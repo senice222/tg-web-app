@@ -52,16 +52,22 @@ const ProductList = () => {
             ]
         },
     ]
-    const {tg} = useTelegram()
+    const {tg, queryId} = useTelegram()
     const [addedItems, setAddedItems] = useState([])
-    const countAllPrice = addedItems.reduce((acc, item) => acc += item.price, 0)
 
     const onSendData = useCallback(() => {
         const data = {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
+            queryId
         }
-        tg.sendData(JSON.stringify(data))
+        fetch('http://localhost:8000', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
     }, [basket])
 
     useEffect(() => {
@@ -70,17 +76,6 @@ const ProductList = () => {
             tg.offEvent('mainButtonClicked', onSendData)
         }
     }, [onSendData])
-
-    useEffect(() => {
-        if (basket.length > 0) {
-            tg.MainButton.show();
-            tg.MainButton.setParams({
-                text: `${basket.length} на ${countAllPrice} €`
-            });
-        } else {
-            tg.MainButton.hide();
-        }
-    }, [basket]);
 
     const onAdd = (product) => {
         const alreadyAdded = addedItems.find(item => item.id === product.id);
