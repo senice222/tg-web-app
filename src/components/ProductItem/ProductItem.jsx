@@ -7,10 +7,15 @@ const ProductItem = ({product, className}) => {
         <div className={`${style.product} ${className}`}>
             <div className={style.img}/>
             <div className={style.title}>{product.title}</div>
-            <div className={style.description}>{product.description}</div>
             <div className={style.price}>
-                <span>Стоимость: <b>{product.price}</b></span>
+                <b>Стоимость: {product.price} €</b>
             </div>
+            <div className={style.description}>
+                {
+                    product.description.map(item => {<span><b><i>{item.label}</i></b> {item.value}</span>})
+                }
+            </div>
+    
             <Button className={style.addBtn}>
                 Добавить в корзину
             </Button>
