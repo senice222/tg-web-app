@@ -1,6 +1,5 @@
 import React from 'react'
 import style from './ProductItem.module.scss'
-import Button from "../Button/Button";
 
 const ProductItem = ({ product, className }) => {
     return (
@@ -16,8 +15,11 @@ const ProductItem = ({ product, className }) => {
                 }
             </div>
 
-            <button className={style.addBtn}>
+            <button className={style.addBasketBtn}>
                 В корзину
+            </button>
+            <button className={style.buy}>
+                Купить сразу
             </button>
         </div>
     );
