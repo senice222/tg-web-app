@@ -10,15 +10,15 @@ const ProductItem = ({ product, className }) => {
     const setProductInState = () => setBasket((prev) => [...prev, product])
 
     useEffect(() => {
-        if (basket.length >= 0) {
-            tg.MainButton.show()
+        if (basket.length > 0) {
+            tg.MainButton.show();
             tg.MainButton.setParams({
-                text: `${basket.length + 1} на ${countAllPrice} €`
-            })
+                text: `${basket.length} на ${countAllPrice} €`
+            });
         } else {
-            tg.MainButton.hide()
+            tg.MainButton.hide();
         }
-    }, [basket])
+    }, [basket]);
 
 
     return (
