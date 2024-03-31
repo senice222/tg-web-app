@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 
 const ProductItem = ({product, className}) => {
     return (
-        <div className={`${style.product} ${style.className}`}>
+        <div className={`${style.product} ${className}`}>
             <div className={style.img}/>
             <div className={style.title}>{product.title}</div>
             <div className={style.description}>{product.description}</div>
