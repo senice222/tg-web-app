@@ -18,6 +18,7 @@ const ProductList = () => {
     return (
         <>
             <Header />
+            <h3 className={style.title}>WoToFo 3000</h3>
             <div className={style.list}>
                 {products.map(item => (
                     <ProductItem
