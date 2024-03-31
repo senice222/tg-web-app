@@ -8,6 +8,7 @@
 
     .title {
         margin-top: 8px;
+        margin-bottom: 10px;
     }
 
     .img {
@@ -19,6 +20,7 @@
     }
     
     .description {
+        margin-top: 10px;
         font-size: 0.8em;
         margin-bottom: 10px;
     }
@@ -30,9 +32,7 @@
     .price {
     
         b {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            font-size: 17px;
+            font-size: 15px;
         }
     }
 }
