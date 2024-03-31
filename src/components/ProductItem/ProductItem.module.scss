@@ -5,29 +5,33 @@
     background-color: #FFFFFF;
     padding: 15px;
     width: 170px;
-}
 
+    .title {
+        margin-top: 8px;
+    }
 
-.img {
-    width: 100%;
-    background: lightgray;
-    height: 100px;
-    margin: 0 auto;
-    background: var(--tg-theme-button-color);
-}
-
-.description {
-    font-size: 0.8em;
-    margin-bottom: 10px;
-}
-
-.addBtn {
-    width: 100%;
-}
-
-.price {
-
-    .productPrice {
-        margin: 0 10px;
+    .img {
+        width: 100%;
+        background: lightgray;
+        height: 100px;
+        margin: 0 auto;
+        background: var(--tg-theme-button-color);
+    }
+    
+    .description {
+        font-size: 0.8em;
+        margin-bottom: 10px;
+    }
+    
+    .addBtn {
+        width: 100%;
+    }
+    
+    .price {
+    
+        .b {
+            margin: 0 10px;
+            font-size: 17px;
+        }
     }
 }
