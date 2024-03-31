@@ -1,9 +1,21 @@
 .header {
     width: 100%;
-    height: 50px;
+    height: 100px;
     display: flex;
     align-items: center;
     padding: 0 20px;
+
+    .filtersDiv {
+        margin-left: 10px;
+    }
+
+    .searchDiv {
+        margin-left: 30px;
+        .serchInput {
+            width: 100%;
+            height: 64px;
+        }
+    }
 }
 
 .username {

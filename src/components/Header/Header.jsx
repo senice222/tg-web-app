@@ -1,16 +1,18 @@
 import React from 'react'
 import style from './Header.module.scss'
-import { useTelegram } from '../../hooks/useTelegram'
-
+import filter from '../../assets/filter.png'
+ 
 const Header = () => {
-    const {onClose, user} = useTelegram()
 
     return (
         <div className={style.header}>
-            <Button onClick={onClose}>Закрыть</Button>
-            <span className={style.username}>
-                {user?.username}
-            </span>
+            <div className={style.filtersDiv}>
+                <img src={filter} alt="/" /> 
+            </div>
+
+            <div className={style.searchDiv}>
+                <input className={style.serchInput} placeholder='Поиск...'/>
+            </div>
         </div>
     );
 }
