@@ -8,7 +8,7 @@ const ProductItem = ({ product, className }) => {
             <div className={style.img} />
             <div className={style.title}>{product.title}</div>
             <div className={style.price}>
-                <b>Стоимость: {product.price} €</b>
+                <b>{product.price} €</b>
             </div>
             <div className={style.description}>
                 {
