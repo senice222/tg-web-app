@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './ProductItem.module.scss'
+import { useTelegram } from '../../hooks/useTelegram'
 
 const ProductItem = ({ product, className }) => {
+    const [basket, setBasket] = useState([])
+    const {tg} = useTelegram()
+    const countAllPrice = basket.reduce((acc, item) => acc += item.price, 0)
+    console.log(countAllPrice)
+    const setProductInState = () => setBasket((prev) => [...prev, product])
+
+    useEffect(() => {
+        if (basket.length >= 0) {
+            tg.MainButton.show()
+            tg.MainButton.setParams({
+                text: `${basket.length + 1} на ${countAllPrice} €`
+            })
+        } else {
+            tg.MainButton.hide()
+        }
+    }, [basket])
+
+
     return (
         <div className={`${style.product} ${className}`}>
             <div className={style.img} />
@@ -15,7 +34,7 @@ const ProductItem = ({ product, className }) => {
                 }
             </div>
 
-            <button className={style.addBasketBtn}>
+            <button className={style.addBasketBtn} onClick={setProductInState}>
                 В корзину
             </button>
             <button className={style.buy}>
