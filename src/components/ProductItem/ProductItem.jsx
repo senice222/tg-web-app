@@ -12,7 +12,7 @@ const ProductItem = ({ product, className }) => {
             </div>
             <div className={style.description}>
                 {
-                    product.description.map(item => <span><b><i>{item.label}</i></b> {item.value}</span>)
+                    product.description.map(item => <div><span><b><i>{item.label}</i></b> {item.value}</span></div>)
                 }
             </div>
 
