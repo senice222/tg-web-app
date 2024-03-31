@@ -1,12 +1,12 @@
 import React from 'react'
 import style from './ProductItem.module.scss'
+// onSendData
+const ProductItem = ({ product, className, onAdd }) => {
 
-const ProductItem = ({ product, className, onAdd, onSendData }) => {
-
-    const send = (product) => {
-        onAdd(product)
-        onSendData()
-    }
+    // const send = (product) => {
+    //     onAdd(product)
+    //     onSendData()
+    // }
 
     return (
         <div className={`${style.product} ${className}`}>
@@ -21,7 +21,7 @@ const ProductItem = ({ product, className, onAdd, onSendData }) => {
                 }
             </div>
 
-            <button className={style.addBasketBtn} onClick={() => send(product)}>
+            <button className={style.addBasketBtn} onClick={() => onAdd(product)}>
                 В корзину
             </button>
             <button className={style.buy}>
