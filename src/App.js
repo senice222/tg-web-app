@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import './App.css';
 import Home from './pages/Home/Home';
-const tg = window.Telegram.WebApp
+import { useTelegram } from './hooks/useTelegram';
+import { Route, Routes } from 'react-router-dom';
+import ProductList from './components/ProductList/ProductList';
 
 const App = () => {
+    const {tg} = useTelegram()
 
     useEffect(() => {
         tg.ready()
@@ -11,7 +14,10 @@ const App = () => {
 
     return (
         <div>
-            <Home />
+            <Routes>
+                <Route index element={<ProductList />} />
+                {/* <Route path='item/:id' element={<DetailedProduct />} /> */}
+            </Routes>
         </div>
     )
 }
