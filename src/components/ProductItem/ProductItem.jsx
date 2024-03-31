@@ -16,9 +16,9 @@ const ProductItem = ({ product, className }) => {
                 }
             </div>
 
-            <Button className={style.addBtn}>
-                Добавить в корзину
-            </Button>
+            <button className={style.addBtn}>
+                В корзину
+            </button>
         </div>
     );
 }
