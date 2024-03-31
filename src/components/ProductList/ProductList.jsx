@@ -49,8 +49,8 @@ const ProductList = () => {
     return (
         <div className={style.globalContainer}>
             <Header />
+            <h3 className={style.title}>WoToFo 3000</h3>
             <div className={style.list}>
-                <h3 className={style.title}>WoToFo 3000</h3>
                 {products.map(item => (
                     <ProductItem
                         product={item}
