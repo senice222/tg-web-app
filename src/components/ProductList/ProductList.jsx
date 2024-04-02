@@ -5,6 +5,7 @@ import Header from '../Header/Header'
 import { useTelegram } from '../../hooks/useTelegram'
 // import {products} from '../../utils/products'
 import { Spin } from 'antd';
+import axios from 'axios'
 
 const getTotalPrice = (items = []) => {
     return items.reduce((acc, item) => {
