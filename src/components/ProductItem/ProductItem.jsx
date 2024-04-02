@@ -27,13 +27,13 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct }) => {
                 </button>
             ) : (
                 <div className={style.wrapper}>
-                    <div className={style.minusProduct}>
+                    <button className={style.minusProduct}>
                         -
-                    </div>
+                    </button>
                     <h3 className={style.quantity}>1</h3>
-                    <div className={style.plusProduct}>
+                    <button className={style.plusProduct}>
                         +
-                    </div>
+                    </button>
                 </div>
             )}
             <button className={style.buy}>
