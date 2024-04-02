@@ -85,7 +85,7 @@ const ProductList = () => {
         const item = addedItems.find(item => item.id === product.id);
         const product = product.price
         if (item.quantity > 0) {
-            setAddedItems((prev) => {
+            setAddedItems(prev => {
                 const choseItem = prev.find(product => product.id === item.id)
                 choseItem.quantity -= 1
                 choseItem.price -= product
