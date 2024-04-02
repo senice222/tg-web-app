@@ -24,6 +24,38 @@
         font-size: 0.8em;
         margin-bottom: 10px;
     }
+
+    .wrapper {
+        height: 35px;
+        width: 100%;
+
+        .quantity {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .minusProduct {
+            border: 1.5px solid #4288FF;
+            background-color: #FFFFFF;
+            width: 25%;
+            cursor: pointer;
+            height: 35px;
+            outline: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .plusProduct {
+            border: 1.5px solid #4288FF;
+            background-color: #FFFFFF;
+            width: 25%;
+            cursor: pointer;
+            font-weight: bold;
+            height: 35px;
+            outline: none;
+            border-radius: 5px;
+        }
+    }
     
     .addBasketBtn {
         width: 65%;

@@ -15,7 +15,7 @@ const getTotalPrice = (items = []) => {
 const ProductList = () => {
     const { tg, queryId } = useTelegram()
     const [addedItems, setAddedItems] = useState([])
-    console.log(queryId)
+
     // const [products, setProducts] = useState([])
 
     // useEffect(() => {
@@ -79,6 +79,7 @@ const ProductList = () => {
             })
         }
     }
+    const isChoseProduct = (product) => addedItems.includes(product)
 
     return (
         <div className={style.globalContainer}>
@@ -92,6 +93,7 @@ const ProductList = () => {
                             product={item}
                             className={style.item}
                             onAdd={onAdd}
+                            isChoseProduct={isChoseProduct}
                             // onSendData={onSendData}
                         />
                     ))

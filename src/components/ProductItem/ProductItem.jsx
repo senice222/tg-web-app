@@ -1,11 +1,11 @@
 import React from 'react'
 import style from './ProductItem.module.scss'
 // onSendData
-const ProductItem = ({ product, className, onAdd, onSendData }) => {
+const ProductItem = ({ product, className, onAdd, isChoseProduct }) => {
 
     const send = (product) => {
         onAdd(product)
-        onSendData()
+        // onSendData()
     }
 
     return (
@@ -21,9 +21,21 @@ const ProductItem = ({ product, className, onAdd, onSendData }) => {
                 }
             </div>
 
-            <button className={style.addBasketBtn} onClick={() => send(product)}>
-                В корзину
-            </button>
+            {!isChoseProduct ? (
+                <button className={style.addBasketBtn} onClick={() => send(product)}>
+                    В корзину
+                </button>
+            ) : (
+                <div className={style.wrapper}>
+                    <div className={style.minusProduct}>
+                        -
+                    </div>
+                    <h3 className={style.quantity}>1</h3>
+                    <div className={style.plusProduct}>
+                        +
+                    </div>
+                </div>
+            )}
             <button className={style.buy}>
                 Купить сразу
             </button>
