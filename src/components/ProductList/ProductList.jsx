@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import style from './ProductList.module.scss'
 import ProductItem from '../ProductItem/ProductItem'
 import Header from '../Header/Header'
-import {useTelegram} from '../../hooks/useTelegram'
-import {products} from '../../utils/products'
+import { useTelegram } from '../../hooks/useTelegram'
+// import {products} from '../../utils/products'
 
 const getTotalPrice = (items = []) => {
     return items.reduce((acc, item) => {
@@ -12,52 +12,67 @@ const getTotalPrice = (items = []) => {
 }
 
 const ProductList = () => {
-    const {tg, queryId} = useTelegram()
+    const { tg, queryId } = useTelegram()
     const [addedItems, setAddedItems] = useState([])
+    const [products, setProducts] = useState([])
 
+    useEffect(() => {
+        const getProducts = async () => {
+            const response = await fetch('http://localhost:8000/internal/get-products', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            const res = response.json()
+            console.log(res)
+            setProducts(res)
+        }
+        getProducts()
+    }, [])
 
-    // const onSendData = async () => {
-    //     const data = {
-    //         products: addedItems,
-    //         totalPrice: getTotalPrice(addedItems),
-    //         queryId
-    //     }
-    //     await fetch('http://localhost:8000/web-data', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(data)
-    //     })
-    // }
-
-    const onSendData = useCallback(() => {
+    const onSendData = async () => {
         const data = {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
             queryId
         }
-        fetch('http://89.208.103.148:8000/web-data', {
+        await fetch('http://localhost:8000/internal/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
         })
-    }, [addedItems])
+    }
 
-    useEffect(() => {
-        tg.onEvent('mainButtonClicked', onSendData)
-        return () => {
-            tg.offEvent('mainButtonClicked', onSendData)
-        }
-    }, [onSendData])
+    // const onSendData = useCallback(() => {
+    //     const data = {
+    //         products: addedItems,
+    //         totalPrice: getTotalPrice(addedItems),
+    //         queryId
+    //     }
+    //     fetch('http://89.208.103.148:8000/web-data', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(data)
+    //     })
+    // }, [addedItems])
+
+    // useEffect(() => {
+    //     tg.onEvent('mainButtonClicked', onSendData)
+    //     return () => {
+    //         tg.offEvent('mainButtonClicked', onSendData)
+    //     }
+    // }, [onSendData])
 
     const onAdd = (product) => {
         const alreadyAdded = addedItems.find(item => item.id === product.id);
         let newItems = [];
 
-        if(alreadyAdded) {
+        if (alreadyAdded) {
             newItems = addedItems.filter(item => item.id !== product.id);
         } else {
             newItems = [...addedItems, product];
@@ -65,7 +80,7 @@ const ProductList = () => {
 
         setAddedItems(newItems)
 
-        if(newItems.length === 0) {
+        if (newItems.length === 0) {
             tg.MainButton.hide();
         } else {
             tg.MainButton.show();
@@ -74,6 +89,7 @@ const ProductList = () => {
             })
         }
     }
+
     return (
         <div className={style.globalContainer}>
             <Header />
@@ -84,7 +100,7 @@ const ProductList = () => {
                         product={item}
                         className={style.item}
                         onAdd={onAdd}
-                        // onSendData={onSendData}
+                        onSendData={onSendData}
                     />
                 ))}
             </div>
