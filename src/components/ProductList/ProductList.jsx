@@ -15,21 +15,28 @@ const ProductList = () => {
     const { tg, queryId } = useTelegram()
     const [addedItems, setAddedItems] = useState([])
     const [products, setProducts] = useState([])
-
+    
     useEffect(() => {
         const getProducts = async () => {
-            const response = await fetch('http://localhost:8000/internal/get-products', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
+            try {
+                const response = await fetch('http://localhost:8000/internal/get-products', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
-            })
-            const res = response.json()
-            console.log(res)
-            setProducts(res)
-        }
-        getProducts()
-    }, [])
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        getProducts();
+    }, []);
+    console.log(products)
 
     const onSendData = async () => {
         const data = {
@@ -95,7 +102,7 @@ const ProductList = () => {
             <Header />
             <h3 className={style.title}>WoToFo 3000</h3>
             <div className={style.list}>
-                {products.map(item => (
+                {products?.map(item => (
                     <ProductItem
                         product={item}
                         className={style.item}
