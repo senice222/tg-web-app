@@ -81,25 +81,18 @@ const ProductList = () => {
         })
     };
     
-    const deleteOne = (productToDelete) => {
-        const item = addedItems.find(item => item.id === productToDelete.id);
-        const productPrice = productToDelete.price; 
+    const deleteOne = (product) => {
+        const item = addedItems.find(item => item.id === product.id);
+        const productPrice = product.price
         if (item.quantity > 0) {
-            setAddedItems(prev => {
-                const updatedItems = prev.map(product => {
-                    if (product.id === item.id) {
-                        return {
-                            ...product,
-                            quantity: product.quantity - 1,
-                            price: product.price - productPrice 
-                        };
-                    }
-                    return product;
-                });
-                return updatedItems;
-            });
+            setAddedItems((prev) => {
+                const choseItem = prev.find(product => product.id === item.id)
+                choseItem.quantity -= 1
+                choseItem.price -= productPrice
+                return [...prev, choseItem]
+            })
         } else {
-            setAddedItems(prev => prev.filter(item => item.id !== productToDelete.id));
+            setAddedItems(addedItems.filter(item => item.id !== product.id));
         }
     };
     
