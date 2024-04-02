@@ -20,17 +20,17 @@ const ProductList = () => {
     useEffect(() => {
         const getProducts = async () => {
             try {
-                const response = await fetch('89.208.103.148:8000/internal/get-products', {
-                    method: 'GET',
+                const response = await axios.get('http://89.208.103.148:8000/internal/get-products', {
                     headers: {
                         'Content-Type': 'application/json',
-                    }
+                    },
                 });
-                if (!response.ok) {
+        
+                if (response.status !== 200) {
                     throw new Error('Network response was not ok');
                 }
-                const data = await response.json();
-                setProducts(data);
+        
+                setProducts(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -44,13 +44,7 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId
         }
-        await fetch('89.208.103.148:8000/internal/web-data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
+        await axios.post('http://89.208.103.148:8000/internal/get-products', data);
     }
 
     // const onSendData = useCallback(() => {
