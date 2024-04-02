@@ -64,7 +64,8 @@ const ProductList = () => {
         } else {
             tg.MainButton.show();
             tg.MainButton.setParams({
-                text: `Купить ${getTotalPrice(newItems)}`
+                // ${getTotalPrice(newItems)}
+                text: `Купить`
             })
         }
     }
@@ -78,6 +79,7 @@ const ProductList = () => {
     
     const deleteOne = (product) => {
         const item = addedItems.find(item => item.id === product.id);
+        console.log(item)
         if (item.quantity > 0) {
             item.quantity -= 1;
             updateTotalPrice();
