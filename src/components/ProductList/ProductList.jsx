@@ -3,7 +3,7 @@ import style from './ProductList.module.scss'
 import ProductItem from '../ProductItem/ProductItem'
 import Header from '../Header/Header'
 import { useTelegram } from '../../hooks/useTelegram'
-// import {products} from '../../utils/products'
+import {products} from '../../utils/products'
 import { Spin } from 'antd';
 
 const getTotalPrice = (items = []) => {
@@ -17,30 +17,30 @@ const ProductList = () => {
     const [addedItems, setAddedItems] = useState([])
     const [products, setProducts] = useState([])
 
-    useEffect(() => {
-        const getProducts = () => {
-            try {
-                fetch('http://89.208.103.148:8000/internal/get-products', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                })
-                    .then(res => {
-                        if (!res.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return res.json();
-                    })
-                    .then(data => {
-                        setProducts(data);
-                    })
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-        getProducts();
-    }, []);
+    // useEffect(() => {
+    //     const getProducts = () => {
+    //         try {
+    //             fetch('http://89.208.103.148:8000/internal/get-products', {
+    //                 method: 'GET',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 }
+    //             })
+    //                 .then(res => {
+    //                     if (!res.ok) {
+    //                         throw new Error('Network response was not ok');
+    //                     }
+    //                     return res.json();
+    //                 })
+    //                 .then(data => {
+    //                     setProducts(data);
+    //                 })
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     };
+    //     getProducts();
+    // }, []);
 
     const onSendData = async () => {
         const data = {
