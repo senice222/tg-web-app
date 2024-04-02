@@ -71,8 +71,6 @@ const ProductList = () => {
     }
     const isChoseProduct = (product) => addedItems.includes(product)
     
-    const updateTotalPrice = () => addedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-
     const addMore = (product) => {
         const item = addedItems.find(item => item.id === product.id);
         setAddedItems((prev) => {
@@ -81,14 +79,17 @@ const ProductList = () => {
             choseItem.price += choseItem.price
             return [...prev, choseItem]
         })
-        updateTotalPrice();
     };
     
     const deleteOne = (product) => {
         const item = addedItems.find(item => item.id === product.id);
         if (item.quantity > 0) {
-            item.quantity -= 1;
-            updateTotalPrice();
+            setAddedItems((prev) => {
+                const choseItem = prev.find(product => product.id === item.id)
+                choseItem.quantity -= 1
+                choseItem.price -= choseItem.price
+                return [...prev, choseItem]
+            })
         } else {
             setAddedItems(addedItems.filter(item => item.id !== product.id));
         }
@@ -111,7 +112,6 @@ const ProductList = () => {
                             isChoseProduct={isChoseProduct}
                             addMore={addMore}
                             deleteOne={deleteOne}
-                            updateTotalPrice={updateTotalPrice}
                             // onSendData={onSendData}
                         />
                     ))

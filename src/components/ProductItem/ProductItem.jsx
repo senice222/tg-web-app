@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './ProductItem.module.scss'
 // onSendData
-const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, deleteOne, updateTotalPrice }) => {
+const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, deleteOne }) => {
 
     const send = (product) => {
         onAdd(product)
