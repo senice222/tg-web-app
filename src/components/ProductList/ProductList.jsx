@@ -71,6 +71,8 @@ const ProductList = () => {
     }
     const isChoseProduct = (product) => addedItems.includes(product)
     
+    const updateTotalPrice = () => addedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
     const addMore = (product) => {
         const item = addedItems.find(item => item.id === product.id);
         item.quantity += 1;
@@ -79,7 +81,6 @@ const ProductList = () => {
     
     const deleteOne = (product) => {
         const item = addedItems.find(item => item.id === product.id);
-        console.log(item)
         if (item.quantity > 0) {
             item.quantity -= 1;
             updateTotalPrice();
@@ -88,7 +89,6 @@ const ProductList = () => {
         }
     };
     
-    const updateTotalPrice = addedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
     return (
         <div className={style.globalContainer}>
