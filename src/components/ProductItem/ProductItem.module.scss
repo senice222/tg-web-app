@@ -29,18 +29,18 @@
         height: 35px;
         width: 100%;
         display: flex;
-
+        align-items: center;
         .quantity {
             margin-left: 10px;
             margin-right: 10px;
         }
 
         .minusProduct {
-            border: 1.5px solid #4288FF;
+            border: 2px solid #4288FF;
             background-color: #FFFFFF;
             width: 25%;
             cursor: pointer;
-            height: 35px;
+            height: 25px;
             outline: none;
             border-radius: 5px;
             font-weight: bold;

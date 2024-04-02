@@ -7,6 +7,7 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct }) => {
         onAdd(product)
         // onSendData()
     }
+    const isChose = isChoseProduct(product)
     console.log(isChoseProduct)
     return (
         <div className={`${style.product} ${className}`}>
@@ -21,7 +22,7 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct }) => {
                 }
             </div>
 
-            {!isChoseProduct ? (
+            {!isChose ? (
                 <button className={style.addBasketBtn} onClick={() => send(product)}>
                     В корзину
                 </button>
