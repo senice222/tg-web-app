@@ -28,11 +28,11 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, delet
                 </button>
             ) : (
                 <div className={style.wrapper}>
-                    <button className={style.minusProduct} onClick={deleteOne}>
+                    <button className={style.minusProduct} onClick={() => deleteOne(product)}>
                         -
                     </button>
                     <p className={style.quantity}>1</p>
-                    <button className={style.plusProduct} onClick={addMore}>
+                    <button className={style.plusProduct} onClick={() => addMore(product)}>
                         +
                     </button>
                 </div>
