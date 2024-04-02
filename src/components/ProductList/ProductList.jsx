@@ -81,18 +81,25 @@ const ProductList = () => {
         })
     };
     
-    const deleteOne = (product) => {
-        const item = addedItems.find(item => item.id === product.id);
-        const product = product.price
+    const deleteOne = (productToDelete) => {
+        const item = addedItems.find(item => item.id === productToDelete.id);
+        const productPrice = productToDelete.price; 
         if (item.quantity > 0) {
             setAddedItems(prev => {
-                const choseItem = prev.find(product => product.id === item.id)
-                choseItem.quantity -= 1
-                choseItem.price -= product
-                return [...prev, choseItem]
-            })
+                const updatedItems = prev.map(product => {
+                    if (product.id === item.id) {
+                        return {
+                            ...product,
+                            quantity: product.quantity - 1,
+                            price: product.price - productPrice 
+                        };
+                    }
+                    return product;
+                });
+                return updatedItems;
+            });
         } else {
-            setAddedItems(addedItems.filter(item => item.id !== product.id));
+            setAddedItems(prev => prev.filter(item => item.id !== productToDelete.id));
         }
     };
     
