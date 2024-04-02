@@ -18,20 +18,23 @@ const ProductList = () => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        const getProducts = async () => {
+        const getProducts = () => {
             try {
-                const response = await fetch('http://89.208.103.148:8000/internal/get-products', {
+                fetch('http://89.208.103.148:8000/internal/get-products', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                     }
-                });
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                console.log(data)
-                setProducts(data);
+                })
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return res.json();
+                    })
+                    .then(data => {
+                        setProducts(data);
+                    })
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
