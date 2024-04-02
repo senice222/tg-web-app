@@ -75,37 +75,18 @@ const ProductList = () => {
 
     const addMore = (product) => {
         const item = addedItems.find(item => item.id === product.id);
-        setAddedItems(prevItems => {
-            const index = prevItems.findIndex(item => item.id === product.id);
-            if (index !== -1) {
-                const updatedItems = [...prevItems];
-                updatedItems[index] = {
-                    ...updatedItems[index],
-                    quantity: updatedItems[index].quantity + 1
-                };
-                return updatedItems;
-            }
-            return prevItems;
-        });
-        item.quantity += 1;
+        setAddedItems((prev) => {
+            const choseItem = prev.find(product => product.id === item.id)
+            choseItem.quantity += 1
+            choseItem.price += choseItem.price
+            return [...prev, choseItem]
+        })
         updateTotalPrice();
     };
     
     const deleteOne = (product) => {
         const item = addedItems.find(item => item.id === product.id);
         if (item.quantity > 0) {
-            setAddedItems(prevItems => {
-                const index = prevItems.findIndex(item => item.id === product.id);
-                if (index !== -1 && prevItems[index].quantity > 0) {
-                    const updatedItems = [...prevItems];
-                    updatedItems[index] = {
-                        ...updatedItems[index],
-                        quantity: updatedItems[index].quantity - 1
-                    };
-                    return updatedItems;
-                }
-                return prevItems;
-            });
             item.quantity -= 1;
             updateTotalPrice();
         } else {
