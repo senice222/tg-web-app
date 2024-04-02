@@ -15,7 +15,7 @@ const Header = () => {
         const clickedProduct = e.target.textContent
         setValue(clickedProduct)
         const choseUser = products.filter(item => item.title === clickedProduct)
-        const productUrl = `/profile/${choseUser[0]._id}`
+        const productUrl = `/profile`
         if (clickedProduct) {
             navigate(productUrl, { replace: true })
         }
