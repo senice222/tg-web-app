@@ -20,7 +20,7 @@ const ProductList = () => {
     useEffect(() => {
         const getProducts = async () => {
             try {
-                const response = await fetch('http://localhost:8000/internal/get-products', {
+                const response = await fetch('89.208.103.148:8000/internal/get-products', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -37,7 +37,6 @@ const ProductList = () => {
         };
         getProducts();
     }, []);
-    console.log(products)
 
     const onSendData = async () => {
         const data = {
@@ -45,7 +44,7 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId
         }
-        await fetch('http://localhost:8000/internal/web-data', {
+        await fetch('89.208.103.148:8000/internal/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -103,7 +102,7 @@ const ProductList = () => {
             <Header />
             <h3 className={style.title}>WoToFo 3000</h3>
             <div className={style.list}>
-                {products ? (
+                {products !== undefined ? (
                     products.map(item => (
                         <ProductItem
                             key={item.id}
