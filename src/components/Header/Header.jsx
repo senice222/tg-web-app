@@ -41,7 +41,7 @@ const Header = () => {
                 <div className={style.container}>
                     <ul className={style.ulAutoComplete}>
                         {
-                            (products && isOpen) && users.map((item, i) => (
+                            (products && isOpen) && products.map((item, i) => (
                                 <div key={i}>
                                     <li
                                         onClick={itemClickHandler}
