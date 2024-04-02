@@ -42,42 +42,42 @@ const ProductList = () => {
     //     getProducts();
     // }, []);
 
-    const onSendData = async () => {
-        const data = {
-            products: addedItems,
-            totalPrice: getTotalPrice(addedItems),
-            queryId
-        }
-        await fetch('http://89.208.103.148:8000/internal/web-data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-    }
-
-    // const onSendData = useCallback(() => {
+    // const onSendData = async () => {
     //     const data = {
     //         products: addedItems,
     //         totalPrice: getTotalPrice(addedItems),
     //         queryId
     //     }
-    //     fetch('http://89.208.103.148:8000/web-data', {
+    //     await fetch('http://89.208.103.148:8000/internal/web-data', {
     //         method: 'POST',
     //         headers: {
     //             'Content-Type': 'application/json',
     //         },
     //         body: JSON.stringify(data)
     //     })
-    // }, [addedItems])
+    // }
 
-    // useEffect(() => {
-    //     tg.onEvent('mainButtonClicked', onSendData)
-    //     return () => {
-    //         tg.offEvent('mainButtonClicked', onSendData)
-    //     }
-    // }, [onSendData])
+    const onSendData = useCallback(() => {
+        const data = {
+            products: addedItems,
+            totalPrice: getTotalPrice(addedItems),
+            queryId
+        }
+        fetch('http://89.208.103.148:8000/web-data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+    }, [addedItems])
+
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', onSendData)
+        return () => {
+            tg.offEvent('mainButtonClicked', onSendData)
+        }
+    }, [onSendData])
 
     const onAdd = (product) => {
         const alreadyAdded = addedItems.find(item => item.id === product.id);
