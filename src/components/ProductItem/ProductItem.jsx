@@ -14,7 +14,7 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, delet
             <div className={style.img} />
             <div className={style.title}>{product.title}</div>
             <div className={style.price}>
-                <b>{product < 1 ? updateTotalPrice : product.price} €</b>
+                <b>{product.quantity < 1 ? updateTotalPrice : product.price} €</b>
             </div>
             <div className={style.description}>
                 {
@@ -31,7 +31,7 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, delet
                     <button className={style.minusProduct} onClick={() => deleteOne(product)}>
                         -
                     </button>
-                    <p className={style.quantity}>1</p>
+                    <p className={style.quantity}>{product.quantity}</p>
                     <button className={style.plusProduct} onClick={() => addMore(product)}>
                         +
                     </button>
