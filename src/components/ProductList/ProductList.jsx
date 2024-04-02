@@ -80,7 +80,7 @@ const ProductList = () => {
         }
     }
     const isChoseProduct = (product) => addedItems.includes(product)
-
+    
     return (
         <div className={style.globalContainer}>
             <Header />

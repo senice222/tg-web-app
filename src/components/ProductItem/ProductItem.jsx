@@ -7,7 +7,7 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct }) => {
         onAdd(product)
         // onSendData()
     }
-
+    console.log(isChoseProduct)
     return (
         <div className={`${style.product} ${className}`}>
             <div className={style.img} />
