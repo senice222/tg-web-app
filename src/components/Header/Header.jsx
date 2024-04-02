@@ -47,7 +47,7 @@ const Header = () => {
                                         onClick={itemClickHandler}
                                         className={style.liAutoComplete}
                                     >
-                                        {item.username}
+                                        {item.title}
                                     </li>
                                 </div>
                             ))
