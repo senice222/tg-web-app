@@ -4,6 +4,7 @@ import ProductItem from '../ProductItem/ProductItem'
 import Header from '../Header/Header'
 import { useTelegram } from '../../hooks/useTelegram'
 // import {products} from '../../utils/products'
+import { Spin } from 'antd';
 
 const getTotalPrice = (items = []) => {
     return items.reduce((acc, item) => {
@@ -15,7 +16,7 @@ const ProductList = () => {
     const { tg, queryId } = useTelegram()
     const [addedItems, setAddedItems] = useState([])
     const [products, setProducts] = useState([])
-    
+
     useEffect(() => {
         const getProducts = async () => {
             try {
@@ -102,14 +103,19 @@ const ProductList = () => {
             <Header />
             <h3 className={style.title}>WoToFo 3000</h3>
             <div className={style.list}>
-                {products?.map(item => (
-                    <ProductItem
-                        product={item}
-                        className={style.item}
-                        onAdd={onAdd}
-                        onSendData={onSendData}
-                    />
-                ))}
+                {products ? (
+                    products.map(item => (
+                        <ProductItem
+                            key={item.id}
+                            product={item}
+                            className={style.item}
+                            onAdd={onAdd}
+                            onSendData={onSendData}
+                        />
+                    ))
+                ) : (
+                    <Spin />
+                )}
             </div>
         </div>
     )
