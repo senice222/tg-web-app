@@ -8,14 +8,13 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, delet
         // onSendData()
     }
     const isChose = isChoseProduct(product)
-    const updatedPrice = updateTotalPrice()
 
     return (
         <div className={`${style.product} ${className}`}>
             <div className={style.img} />
             <div className={style.title}>{product.title}</div>
             <div className={style.price}>
-                <b>{product.quantity < 1 ? updatedPrice : product.price} €</b>
+                <b>{product.price} €</b>
             </div>
             <div className={style.description}>
                 {
