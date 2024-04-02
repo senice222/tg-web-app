@@ -6,12 +6,6 @@ import { useTelegram } from '../../hooks/useTelegram'
 import {products} from '../../utils/products'
 import { Spin } from 'antd';
 
-const getTotalPrice = (items = []) => {
-    return items.reduce((acc, item) => {
-        return acc += item.price
-    }, 0)
-}
-
 const ProductList = () => {
     const { tg, queryId } = useTelegram()
     const [addedItems, setAddedItems] = useState([])
@@ -76,6 +70,24 @@ const ProductList = () => {
     }
     const isChoseProduct = (product) => addedItems.includes(product)
     
+    const addMore = (product) => {
+        const item = addedItems.find(item => item.id === product.id);
+        item.quantity += 1;
+        updateTotalPrice();
+    };
+    
+    const deleteOne = (product) => {
+        const item = addedItems.find(item => item.id === product.id);
+        if (item.quantity > 0) {
+            item.quantity -= 1;
+            updateTotalPrice();
+        } else {
+            setAddedItems(addedItems.filter(item => item.id !== product.id));
+        }
+    };
+    
+    const updateTotalPrice = addedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
     return (
         <div className={style.globalContainer}>
             <Header />
@@ -90,6 +102,9 @@ const ProductList = () => {
                             onAdd={onAdd}
                             addedItems={addedItems}
                             isChoseProduct={isChoseProduct}
+                            addMore={addMore}
+                            deleteOne={deleteOne}
+                            updateTotalPrice={updateTotalPrice}
                             // onSendData={onSendData}
                         />
                     ))

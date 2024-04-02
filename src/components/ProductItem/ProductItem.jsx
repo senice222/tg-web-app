@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './ProductItem.module.scss'
 // onSendData
-const ProductItem = ({ product, addedItems, className, onAdd, isChoseProduct }) => {
+const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, deleteOne, updateTotalPrice }) => {
 
     const send = (product) => {
         onAdd(product)
@@ -9,29 +9,12 @@ const ProductItem = ({ product, addedItems, className, onAdd, isChoseProduct }) 
     }
     const isChose = isChoseProduct(product)
 
-    const addMore = () => {
-        const item = addedItems.find(item => item.id === product.id)
-        item.quantity += 1
-        const price = item.price
-        item.price += price
-    }
-
-    const deleteOne = () => {
-        const item = addedItems.find(item => item.id === product.id)
-        if (item.quantity < 1) {
-            return addedItems.filter(item => item.id !== product.id)
-        } else {
-            item.quantity -= 1
-            item.price -= price
-        }
-    }
-
     return (
         <div className={`${style.product} ${className}`}>
             <div className={style.img} />
             <div className={style.title}>{product.title}</div>
             <div className={style.price}>
-                <b>{product.price} €</b>
+                <b>{updateTotalPrice} €</b>
             </div>
             <div className={style.description}>
                 {
