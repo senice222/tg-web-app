@@ -1,13 +1,30 @@
 import React from 'react'
 import style from './ProductItem.module.scss'
 // onSendData
-const ProductItem = ({ product, className, onAdd, isChoseProduct }) => {
+const ProductItem = ({ product, addedItems, className, onAdd, isChoseProduct }) => {
 
     const send = (product) => {
         onAdd(product)
         // onSendData()
     }
     const isChose = isChoseProduct(product)
+
+    const addMore = () => {
+        const item = addedItems.find(item => item.id === product.id)
+        item.quantity += 1
+        const price = item.price
+        item.price += price
+    }
+
+    const deleteOne = () => {
+        const item = addedItems.find(item => item.id === product.id)
+        if (item.quantity < 1) {
+            return addedItems.filter(item => item.id !== product.id)
+        } else {
+            item.quantity -= 1
+            item.price -= price
+        }
+    }
 
     return (
         <div className={`${style.product} ${className}`}>
@@ -28,11 +45,11 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct }) => {
                 </button>
             ) : (
                 <div className={style.wrapper}>
-                    <button className={style.minusProduct}>
+                    <button className={style.minusProduct} onClick={deleteOne}>
                         -
                     </button>
                     <p className={style.quantity}>1</p>
-                    <button className={style.plusProduct}>
+                    <button className={style.plusProduct} onClick={addMore}>
                         +
                     </button>
                 </div>
