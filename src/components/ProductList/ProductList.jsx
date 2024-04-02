@@ -92,7 +92,7 @@ const ProductList = () => {
                             product={item}
                             className={style.item}
                             onAdd={onAdd}
-                            onSendData={onSendData}
+                            // onSendData={onSendData}
                         />
                     ))
                 ) : (
