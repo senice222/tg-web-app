@@ -33,6 +33,7 @@
         .quantity {
             margin-left: 10px;
             margin-right: 10px;
+            font-size: 16px;
         }
 
         .minusProduct {
@@ -40,21 +41,23 @@
             background-color: #FFFFFF;
             width: 25%;
             cursor: pointer;
-            height: 25px;
+            height: 32px;
             outline: none;
             border-radius: 5px;
             font-weight: bold;
+            font-size: 16px;
         }
 
         .plusProduct {
-            border: 1.5px solid #4288FF;
+            border: 2px solid #4288FF;
             background-color: #FFFFFF;
             width: 25%;
             cursor: pointer;
             font-weight: bold;
-            height: 35px;
+            height: 32px;
             outline: none;
             border-radius: 5px;
+            font-size: 16px;
         }
     }
     

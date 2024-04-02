@@ -8,7 +8,7 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct }) => {
         // onSendData()
     }
     const isChose = isChoseProduct(product)
-    console.log(isChoseProduct)
+
     return (
         <div className={`${style.product} ${className}`}>
             <div className={style.img} />
@@ -31,7 +31,7 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct }) => {
                     <button className={style.minusProduct}>
                         -
                     </button>
-                    <h3 className={style.quantity}>1</h3>
+                    <p className={style.quantity}>1</p>
                     <button className={style.plusProduct}>
                         +
                     </button>
