@@ -10,7 +10,7 @@ const Header = () => {
     const [productsList, setProductsList] = useState()
     const navigate = useNavigate()
     const debouncedValue = useDebounce(value, 300)
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         const getProducts = () => {
