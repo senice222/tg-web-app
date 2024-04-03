@@ -86,7 +86,7 @@ const ProductList = ({ addedItems, setAddedItems }) => {
                 const choseItem = prev.find(product => product.id === item.id)
                 choseItem.quantity -= 1
                 choseItem.totalPrice -= choseItem.price
-                return [...prev, choseItem]
+                return [choseItem]
             })
         } else {
             setAddedItems(addedItems.filter(item => item.id !== product.id));

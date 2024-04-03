@@ -9,17 +9,27 @@ const Basket = ({ addedItems, setAddedItems }) => {
         const item = addedItems.find(item => item.id === product.id);
         setAddedItems((prev) => {
             const choseItem = prev.find(product => product.id === item.id)
+            if (addedItems.includes(choseItem)) {
+                choseItem.quantity += 1
+                choseItem.totalPrice += choseItem.price
+                return [choseItem]
+            }
             choseItem.quantity += 1
             choseItem.totalPrice += choseItem.price
             return [...prev, choseItem]
         })
     };
-    console.log(addedItems)
+    
     const deleteOne = (product) => {
         const item = addedItems.find(item => item.id === product.id);
         if (item.quantity > 1) {
             setAddedItems((prev) => {
                 const choseItem = prev.find(product => product.id === item.id)
+                if (addedItems.includes(choseItem)) {
+                    choseItem.quantity -= 1
+                    choseItem.totalPrice -= choseItem.price
+                    return [choseItem]
+                }
                 choseItem.quantity -= 1
                 choseItem.totalPrice -= choseItem.price
                 return [...prev, choseItem]
