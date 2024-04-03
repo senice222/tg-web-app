@@ -75,7 +75,8 @@ const Basket = ({ addedItems, setAddedItems }) => {
                                 </div>
                                 <div className={style.priceDiv}>
                                     <div className={style.price}>
-                                        <p>{item.totalPrice} €</p>
+                                        <h3>{item.totalPrice} €</h3>
+                                        <p>{item.price} €</p>
                                     </div>
                                     <div className={style.delete}>
                                         <p onClick={() => handleDeleteClick(item)}>delete</p>
@@ -86,6 +87,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                     </div>
                 </div>
             ))}
+            <button></button>
         </div>
     )
 }

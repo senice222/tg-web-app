@@ -90,8 +90,11 @@ body {
                     justify-content: space-between;
 
                     .price {
+                        h3 {
+                            font-size: 17px
+                        }
                         p {
-                            font-weight: bold;
+                            font-size: 14px;
                         }
                     }
                 }
