@@ -65,11 +65,11 @@ const Basket = ({ addedItems, setAddedItems }) => {
                                     <p>{item.title}</p>
                                 </div>
                                 <div className={style.btnsDiv}>
-                                    <button className={style.minusProduct} onClick={() => addMore(item)}>
+                                    <button className={style.minusProduct} onClick={() => deleteOne(item)}>
                                         -
                                     </button>
                                     <p className={style.quantity}>{item.quantity}</p>
-                                    <button className={style.plusProduct} onClick={() => deleteOne(item)}>
+                                    <button className={style.plusProduct} onClick={() => addMore(item)}>
                                         +
                                     </button>
                                 </div>
