@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 import { Route, Routes } from 'react-router-dom';
