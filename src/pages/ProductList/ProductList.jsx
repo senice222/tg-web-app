@@ -105,7 +105,7 @@ const ProductList = ({ addedItems, setAddedItems }) => {
                             isChoseProduct={isChoseProduct}
                             addMore={addMore}
                             deleteOne={deleteOne}
-                        // onSendData={onSendData}
+                            // onSendData={onSendData}
                         />
                     ))
                 ) : (

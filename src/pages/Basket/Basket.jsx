@@ -1,8 +1,31 @@
 import React from 'react'
 import style from './Basket.module.scss'
 
-const Basket = ({addedItems, setAddedItems}) => {
+const Basket = ({ addedItems, setAddedItems }) => {
 
+    const addMore = (product) => {
+        const item = addedItems.find(item => item.id === product.id);
+        setAddedItems((prev) => {
+            const choseItem = prev.find(product => product.id === item.id)
+            choseItem.quantity += 1
+            choseItem.totalPrice += choseItem.price
+            return [...prev, choseItem]
+        })
+    };
+
+    const deleteOne = (product) => {
+        const item = addedItems.find(item => item.id === product.id);
+        if (item.quantity > 1) {
+            setAddedItems((prev) => {
+                const choseItem = prev.find(product => product.id === item.id)
+                choseItem.quantity -= 1
+                choseItem.totalPrice -= choseItem.price
+                return [...prev, choseItem]
+            })
+        } else {
+            setAddedItems(addedItems.filter(item => item.id !== product.id));
+        }
+    };
 
     return (
         <div className={style.globalContainer}>
@@ -21,28 +44,30 @@ const Basket = ({addedItems, setAddedItems}) => {
                     </div>
                 </div>
                 <div className={style.infoContainer}>
-                    <div className={style.info}>
-                        <div className={style.titleDiv}>
-                            <p>Mango Peach</p>
-                        </div>
-                        <div className={style.btnsDiv}>
-                            <button className={style.minusProduct}>
-                                -
-                            </button>
-                            <p className={style.quantity}>1</p>
-                            <button className={style.plusProduct} >
-                                +
-                            </button>
-                        </div>
-                        <div className={style.priceDiv}>
-                            <div className={style.price}>
-                                <p>35 euro</p>
+                    {addedItems.map(item => (
+                        <div key={item.id} className={style.info}>
+                            <div className={style.titleDiv}>
+                                <p>{item.title}</p>
                             </div>
-                            <div className={style.delete}>
-                                <p>delete</p>
+                            <div className={style.btnsDiv}>
+                                <button className={style.minusProduct} onClick={() => addMore(item)}>
+                                    -
+                                </button>
+                                <p className={style.quantity}>{item.quantity}</p>
+                                <button className={style.plusProduct} onClick={() => deleteOne(item)}>
+                                    +
+                                </button>
+                            </div>
+                            <div className={style.priceDiv}>
+                                <div className={style.price}>
+                                    <p>{item.totalPrice} €</p>
+                                </div>
+                                <div className={style.delete}>
+                                    <p onClick={() => handleDeleteClick(item)}>delete</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
