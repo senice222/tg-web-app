@@ -113,7 +113,7 @@ const ProductList = ({ addedItems, setAddedItems }) => {
                 )}
             </div>
             {addedItems.length > 0 &&
-                <button className={style.button} onClick={() => navigate("/basket")}>{addedItems.length + 1} товаров на {prices} </button>
+                <button className={style.button} onClick={() => navigate("/basket")}>{addedItems.length} товаров на {prices} </button>
             }
         </div>
     )
