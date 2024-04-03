@@ -24,8 +24,7 @@ const Header = () => {
         const clickedProduct = e.target.textContent
         setValue(clickedProduct)
         const choseUser = productsList.filter(item => item.title === clickedProduct)
-        console.log(choseUser)
-        const productUrl = `/profile`
+        const productUrl = `/product/${choseUser[0]._id}`
         if (clickedProduct) {
             navigate(productUrl, { replace: true })
         }
@@ -47,6 +46,7 @@ const Header = () => {
                     className={style.serchInput}
                     placeholder='Поиск...'
                     onClick={() => setIsOpen(true)}
+                    onBlur={() => setIsOpen(false)}
                 />
                 <div className={style.container}>
                     <ul className={style.ulAutoComplete}>

@@ -4,6 +4,7 @@ import Home from './pages/Home/Home';
 import { useTelegram } from './hooks/useTelegram';
 import { Route, Routes } from 'react-router-dom';
 import ProductList from './components/ProductList/ProductList';
+import DetailedProduct from './pages/DetailedProduct/DetailedProduct';
 
 const App = () => {
     const {tg} = useTelegram()
@@ -16,7 +17,7 @@ const App = () => {
         <div>
             <Routes>
                 <Route index element={<ProductList />} />
-                {/* <Route path='item/:id' element={<DetailedProduct />} /> */}
+                <Route path="product/:id" element={<DetailedProduct />} />
             </Routes>
         </div>
     )
