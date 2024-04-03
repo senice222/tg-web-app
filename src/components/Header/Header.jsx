@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from './Header.module.scss'
 import filter from '../../assets/filter.png'
 import { useDebounce } from '../../hooks/useDebounce'
