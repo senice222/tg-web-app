@@ -51,6 +51,8 @@ const ProductList = () => {
     //         body: JSON.stringify(data)
     //     })
     // }
+    const prices = addedItems.reduce((acc, item) => acc += item.totalPrice, 0)
+
 
     const onAdd = (product) => {
         let newItems = [];
@@ -83,7 +85,7 @@ const ProductList = () => {
     
     const deleteOne = (product) => {
         const item = addedItems.find(item => item.id === product.id);
-        if (item.quantity > 0) {
+        if (item.quantity > 1) {
             setAddedItems((prev) => {
                 const choseItem = prev.find(product => product.id === item.id)
                 choseItem.quantity -= 1
@@ -119,6 +121,7 @@ const ProductList = () => {
                     <Spin />
                 )}
             </div>
+            {addedItems.length > 0 && <button className={style.button}>{addedItems.length + 1} товаров на {prices} </button>}
         </div>
     )
 }
