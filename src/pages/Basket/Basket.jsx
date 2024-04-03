@@ -24,11 +24,11 @@ const Basket = () => {
                             <p>Mango Peach</p>
                         </div>
                         <div className={style.btnsDiv}>
-                            <button className={style.minusProduct} onClick={() => deleteOne(product)}>
+                            <button className={style.minusProduct}>
                                 -
                             </button>
                             <p className={style.quantity}>{product.quantity}</p>
-                            <button className={style.plusProduct} onClick={() => addMore(product)}>
+                            <button className={style.plusProduct} >
                                 +
                             </button>
                         </div>
