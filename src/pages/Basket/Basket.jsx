@@ -1,7 +1,9 @@
 import React from 'react'
 import style from './Basket.module.scss'
 
-const Basket = () => {
+const Basket = ({addedItems, setAddedItems}) => {
+
+
     return (
         <div className={style.globalContainer}>
             <div className={style.header}>
@@ -27,7 +29,7 @@ const Basket = () => {
                             <button className={style.minusProduct}>
                                 -
                             </button>
-                            <p className={style.quantity}>{product.quantity}</p>
+                            <p className={style.quantity}>1</p>
                             <button className={style.plusProduct} >
                                 +
                             </button>
