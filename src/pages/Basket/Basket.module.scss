@@ -5,7 +5,7 @@ body {
 .globalContainer {
     height: 100%;
     width: 100%;
-
+    
     .header {
         padding: 15px 10px;
         height: 50px;
@@ -16,14 +16,50 @@ body {
         .basketBtn {
             button {
                 background-color: #46A842;
-                font-weight: bold;
-                width: 70%;
+                width: 100%;
                 height: 40px;
-                border-radius: 8px;
+                border-radius: 5px;
                 outline: none;
                 border: none;
                 cursor: pointer;
                 color: white
+            }
+        }
+    }
+
+    .basketProductsContainer {
+        background-color: white;
+        width: 100%;
+        height: 150px;
+        
+        .infoContainer {
+            display: flex;
+
+            .info {
+                display: flex;
+
+                .btnsDiv {
+                    display: flex;
+                }
+                .priceDiv {
+                    display: flex;
+                    justify-content: space-between;
+                    .price {
+                        p {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+
+        .productItem {
+            .imgDiv {
+                height: 100%;
+                img {
+                    height: 50px;
+                    width: 50px;
+                }
             }
         }
     }

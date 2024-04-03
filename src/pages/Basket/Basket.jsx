@@ -17,7 +17,7 @@ const Basket = ({addedItems, setAddedItems}) => {
             <div className={style.basketProductsContainer}>
                 <div className={style.productItem}>
                     <div className={style.imgDiv}>
-                        <img src="" alt="/" />
+                        <img src="https://m-store.by/wp-content/uploads/2022/12/cranberrygrape-600x600-1.jpg" alt="/" />
                     </div>
                 </div>
                 <div className={style.infoContainer}>
