@@ -1,7 +1,9 @@
 import React from 'react'
 import style from './Basket.module.scss'
+import { useNavigate } from 'react-router-dom';
 
 const Basket = ({ addedItems, setAddedItems }) => {
+    const navigate = useNavigate()
 
     const addMore = (product) => {
         const item = addedItems.find(item => item.id === product.id);
@@ -31,7 +33,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
         <div className={style.globalContainer}>
             <div className={style.header}>
                 <div className={style.backDiv}>
-                    <p>Назад</p>
+                    <p onClick={() => navigate("/")}>Назад</p>
                 </div>
                 <div className={style.basketBtn}>
                     <button className={style.button}>1 товаров на 35.85</button>

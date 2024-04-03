@@ -38,6 +38,7 @@ body {
         border-bottom: 1px solid #EDEBED;
         .infoContainer {
             display: flex;
+            flex-direction: column;
             padding: 20px;
             width: 100%;
 
