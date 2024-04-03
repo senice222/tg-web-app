@@ -68,6 +68,11 @@ const ProductList = ({ addedItems, setAddedItems }) => {
         const item = addedItems.find(item => item.id === product.id);
         setAddedItems((prev) => {
             const choseItem = prev.find(product => product.id === item.id)
+            if (addedItems.includes(choseItem)) {
+                choseItem.quantity += 1
+                choseItem.totalPrice += choseItem.price
+                return [choseItem]
+            }
             choseItem.quantity += 1
             choseItem.totalPrice += choseItem.price
             return [...prev, choseItem]
