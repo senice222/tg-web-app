@@ -29,6 +29,10 @@ const Basket = ({ addedItems, setAddedItems }) => {
         }
     };
 
+    const handleDeleteClick = (product) => {
+        return product
+    }
+
     return (
         <div className={style.globalContainer}>
             <div className={style.header}>
@@ -40,37 +44,37 @@ const Basket = ({ addedItems, setAddedItems }) => {
                 </div>
             </div>
             <div className={style.basketProductsContainer}>
-                <div className={style.productItem}>
-                    <div className={style.imgDiv}>
-                        <img src="https://m-store.by/wp-content/uploads/2022/12/cranberrygrape-600x600-1.jpg" alt="/" />
-                    </div>
-                </div>
-                <div className={style.infoContainer}>
-                    {addedItems.map(item => (
-                        <div key={item.id} className={style.info}>
-                            <div className={style.titleDiv}>
-                                <p>{item.title}</p>
-                            </div>
-                            <div className={style.btnsDiv}>
-                                <button className={style.minusProduct} onClick={() => addMore(item)}>
-                                    -
-                                </button>
-                                <p className={style.quantity}>{item.quantity}</p>
-                                <button className={style.plusProduct} onClick={() => deleteOne(item)}>
-                                    +
-                                </button>
-                            </div>
-                            <div className={style.priceDiv}>
-                                <div className={style.price}>
-                                    <p>{item.totalPrice} €</p>
+                {addedItems.map(item => (
+                    <div key={item.id} className={style.productItem}>
+                        <div className={style.imgDiv}>
+                            <img src="https://m-store.by/wp-content/uploads/2022/12/cranberrygrape-600x600-1.jpg" alt="/" />
+                        </div>
+                        <div className={style.infoContainer}>
+                            <div className={style.info}>
+                                <div className={style.titleDiv}>
+                                    <p>{item.title}</p>
                                 </div>
-                                <div className={style.delete}>
-                                    <p onClick={() => handleDeleteClick(item)}>delete</p>
+                                <div className={style.btnsDiv}>
+                                    <button className={style.minusProduct} onClick={() => addMore(item)}>
+                                        -
+                                    </button>
+                                    <p className={style.quantity}>{item.quantity}</p>
+                                    <button className={style.plusProduct} onClick={() => deleteOne(item)}>
+                                        +
+                                    </button>
+                                </div>
+                                <div className={style.priceDiv}>
+                                    <div className={style.price}>
+                                        <p>{item.totalPrice} €</p>
+                                    </div>
+                                    <div className={style.delete}>
+                                        <p onClick={() => handleDeleteClick(item)}>delete</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
         </div>
     )
