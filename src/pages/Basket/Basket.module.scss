@@ -39,6 +39,7 @@ body {
         margin-top: 10px;
         border-bottom: 1px solid #EDEBED;
         flex-direction: column;
+
         .infoContainer {
             display: flex;
             flex-direction: column;
@@ -49,11 +50,13 @@ body {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
+
                 .btnsDiv {
                     display: flex;
                     padding-top: 10px;
                     padding-bottom: 10px;
                     align-items: center;
+
                     .quantity {
                         margin-left: 10px;
                         margin-right: 10px;
@@ -63,7 +66,7 @@ body {
                     .minusProduct {
                         border: 2px solid #4288FF;
                         background-color: #FFFFFF;
-                        width: 30px;
+                        width: 33px;
                         cursor: pointer;
                         height: 32px;
                         outline: none;
@@ -75,7 +78,7 @@ body {
                     .plusProduct {
                         border: 2px solid #4288FF;
                         background-color: #FFFFFF;
-                        width: 30px;
+                        width: 33px;
                         cursor: pointer;
                         font-weight: bold;
                         height: 32px;
@@ -91,10 +94,15 @@ body {
 
                     .price {
                         h3 {
-                            font-size: 17px
-                        }
-                        p {
                             font-size: 14px;
+                        }
+
+                        div {
+                            margin-left: 10px;
+
+                            p {
+                                font-size: 14px;
+                            }
                         }
                     }
                 }
@@ -107,10 +115,45 @@ body {
             .imgDiv {
                 margin-left: 20px;
                 margin-top: 20px;
+
                 img {
                     height: 50px;
                     width: 50px;
                 }
+            }
+        }
+    }
+
+    .footerContainer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        border-top: 1px solid #EDEBED;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+
+        .footerContainer {
+            .flexDiv{
+                display: flex;
+                justify-content: space-between;
+
+                .summa {
+                    font-size: 14px;
+                }
+                .totalPrice {
+                    font-size: 14px;
+                }
+            }
+            
+            .btn {
+                width: 100%;
+                height: 45px;
+                border-radius: 7px;
+                color: white;
+                background-color: #4288FF;
             }
         }
     }

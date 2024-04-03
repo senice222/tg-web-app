@@ -19,7 +19,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
             return [...prev, choseItem]
         })
     };
-    
+
     const deleteOne = (product) => {
         const item = addedItems.find(item => item.id === product.id);
         if (item.quantity > 1) {
@@ -42,6 +42,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
     const handleDeleteClick = (product) => {
         return product
     }
+    const totalPrice = addedItems.reduce((acc, curr) => acc += curr.totalPrice, 0)
 
     return (
         <div className={style.globalContainer}>
@@ -76,7 +77,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                                 <div className={style.priceDiv}>
                                     <div className={style.price}>
                                         <h3>{item.totalPrice} €</h3>
-                                        <p>{item.price} €</p>
+                                        <div><p>{item.price} €</p></div>
                                     </div>
                                     <div className={style.delete}>
                                         <p onClick={() => handleDeleteClick(item)}>delete</p>
@@ -87,7 +88,13 @@ const Basket = ({ addedItems, setAddedItems }) => {
                     </div>
                 </div>
             ))}
-            <button></button>
+            <div className={style.footerContainer}>
+                <div className={style.flexDiv}>
+                    <h3 className={style.summa}>Сумма</h3>
+                    <h3 className={style.totalPrice}>{totalPrice} €</h3>
+                </div>
+                <button className={style.btn}>Оформить заказ</button>
+            </div>
         </div>
     )
 }
