@@ -43,9 +43,9 @@ const Basket = ({ addedItems, setAddedItems }) => {
                     <button className={style.button}>1 товаров на 35.85</button>
                 </div>
             </div>
-            <div className={style.basketProductsContainer}>
-                {addedItems.map(item => (
-                    <div key={item.id} className={style.productItem}>
+            {addedItems.map(item => (
+                <div key={item.id} className={style.basketProductsContainer}>
+                    <div className={style.productItem}>
                         <div className={style.imgDiv}>
                             <img src="https://m-store.by/wp-content/uploads/2022/12/cranberrygrape-600x600-1.jpg" alt="/" />
                         </div>
@@ -74,8 +74,8 @@ const Basket = ({ addedItems, setAddedItems }) => {
                             </div>
                         </div>
                     </div>
-                ))}
-            </div>
+                </div>
+            ))}
         </div>
     )
 }
