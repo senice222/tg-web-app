@@ -14,7 +14,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
             return [...prev, choseItem]
         })
     };
-
+    console.log(addedItems)
     const deleteOne = (product) => {
         const item = addedItems.find(item => item.id === product.id);
         if (item.quantity > 1) {
