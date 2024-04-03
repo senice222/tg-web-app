@@ -31,10 +31,13 @@ body {
     .basketProductsContainer {
         background-color: white;
         width: 100%;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 5px;
         display: flex;
         height: auto;
         border-top: 1px solid #EDEBED;
-        margin-top: 15px;
+        margin-top: 10px;
         border-bottom: 1px solid #EDEBED;
         flex-direction: column;
         .infoContainer {
