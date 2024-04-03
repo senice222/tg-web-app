@@ -14,7 +14,7 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, delet
             <div className={style.img} />
             <div className={style.title}>{product.title}</div>
             <div className={style.price}>
-                <b>{product.price} €</b>
+                <b>{product.totalPrice} €</b>
             </div>
             <div className={style.description}>
                 {
