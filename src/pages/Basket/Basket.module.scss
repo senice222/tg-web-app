@@ -1,0 +1,30 @@
+body {
+    background-color: #f5f4f5;
+}
+
+.globalContainer {
+    height: 100%;
+    width: 100%;
+
+    .header {
+        padding: 15px 10px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .basketBtn {
+            button {
+                background-color: #46A842;
+                font-weight: bold;
+                width: 70%;
+                height: 40px;
+                border-radius: 8px;
+                outline: none;
+                border: none;
+                cursor: pointer;
+                color: white
+            }
+        }
+    }
+}

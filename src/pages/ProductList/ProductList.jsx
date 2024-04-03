@@ -1,14 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import style from './ProductList.module.scss'
-import ProductItem from '../ProductItem/ProductItem'
-import Header from '../Header/Header'
+import ProductItem from '../../components/ProductItem/ProductItem'
+import Header from '../../components/Header/Header'
 import { useTelegram } from '../../hooks/useTelegram'
-import {products} from '../../utils/products'
+import { products } from '../../utils/products'
 import { Spin } from 'antd';
+import { useNavigate } from 'react-router-dom'
 
-const ProductList = () => {
+const ProductList = ({ addedItems, setAddedItems }) => {
     const { tg, queryId } = useTelegram()
-    const [addedItems, setAddedItems] = useState([])
+    const navigate = useNavigate()
 
     // const [products, setProducts] = useState([])
 
@@ -60,19 +61,9 @@ const ProductList = () => {
         newItems = [...addedItems, product];
 
         setAddedItems(newItems)
-
-        if (newItems.length === 0) {
-            tg.MainButton.hide();
-        } else {
-            tg.MainButton.show();
-            tg.MainButton.setParams({
-                // ${getTotalPrice(newItems)}
-                text: `Купить`
-            })
-        }
     }
     const isChoseProduct = (product) => addedItems.includes(product)
-    
+
     const addMore = (product) => {
         const item = addedItems.find(item => item.id === product.id);
         setAddedItems((prev) => {
@@ -82,7 +73,7 @@ const ProductList = () => {
             return [...prev, choseItem]
         })
     };
-    
+
     const deleteOne = (product) => {
         const item = addedItems.find(item => item.id === product.id);
         if (item.quantity > 1) {
@@ -96,7 +87,7 @@ const ProductList = () => {
             setAddedItems(addedItems.filter(item => item.id !== product.id));
         }
     };
-    
+
 
     return (
         <div className={style.globalContainer}>
@@ -114,14 +105,16 @@ const ProductList = () => {
                             isChoseProduct={isChoseProduct}
                             addMore={addMore}
                             deleteOne={deleteOne}
-                            // onSendData={onSendData}
+                        // onSendData={onSendData}
                         />
                     ))
                 ) : (
                     <Spin />
                 )}
             </div>
-            {addedItems.length > 0 && <button className={style.button}>{addedItems.length + 1} товаров на {prices} </button>}
+            {addedItems.length > 0 &&
+                <button className={style.button} onClick={() => navigate("/basket")}>{addedItems.length + 1} товаров на {prices} </button>
+            }
         </div>
     )
 }
