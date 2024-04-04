@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './ChoosePaymentType.scss'
+import style from './ChoosePaymentType.module.scss'
 
 const ChoosePaymentType = () => {
 
