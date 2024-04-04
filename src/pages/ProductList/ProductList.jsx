@@ -53,7 +53,6 @@ const ProductList = ({ addedItems, setAddedItems }) => {
     // }
     const prices = addedItems.reduce((acc, item) => acc += item.totalPrice, 0)
 
-
     const onAdd = (product) => {
         let newItems = [];
 
