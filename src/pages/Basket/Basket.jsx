@@ -51,7 +51,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                     <p onClick={() => navigate("/")}>Назад</p>
                 </div>
                 <div className={style.basketBtn}>
-                    <button className={style.button}>1 товаров на 35.85</button>
+                    <button className={style.button}>{addedItems.length} товаров на {totalPrice}</button>
                 </div>
             </div>
             {addedItems.map(item => (
@@ -93,7 +93,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                     <div className={style.summa}>Сумма</div>
                     <div className={style.totalPrice}>{totalPrice} €</div>
                 </div>
-                <button className={style.btn}>Оформить заказ</button>
+                <button className={style.btn} onClick={() => navigate("/typeOfPayment")}>Оформить заказ</button>
             </div>
         </div>
     )

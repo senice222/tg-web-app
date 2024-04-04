@@ -4,6 +4,7 @@ import { useTelegram } from './hooks/useTelegram';
 import { Route, Routes } from 'react-router-dom';
 import ProductList from './pages/ProductList/ProductList';
 import Basket from './pages/Basket/Basket';
+import ChoosePaymentType from './pages/ChoosePaymentType/ChoosePaymentType';
 
 const App = () => {
     const {tg} = useTelegram()
@@ -18,6 +19,7 @@ const App = () => {
             <Routes>
                 <Route index element={<ProductList addedItems={addedItems} setAddedItems={setAddedItems} />} />
                 <Route path="/basket" element={<Basket addedItems={addedItems} setAddedItems={setAddedItems} />} />
+                <Route path="/typeOfPayment" element={<ChoosePaymentType />} />
             </Routes>
         </div>
     )
