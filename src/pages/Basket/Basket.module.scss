@@ -94,6 +94,7 @@ body {
 
                     .price {
                         display: flex;
+
                         h3 {
                             font-size: 14px;
                         }
@@ -137,26 +138,24 @@ body {
     display: flex;
     flex-direction: column;
 
-    .footerContainer {
+    .flexDiv {
         display: flex;
-        .flexDiv {
-            display: flex;
-            justify-content: space-between;
+        justify-content: space-between;
 
-            .summa {
-                font-size: 14px;
-            }
-            .totalPrice {
-                font-size: 14px;
-            }
+        .summa {
+            font-size: 14px;
         }
-        
-        .btn {
-            width: 100%;
-            height: 45px;
-            border-radius: 7px;
-            color: white;
-            background-color: #4288FF;
+
+        .totalPrice {
+            font-size: 14px;
         }
+    }
+
+    .btn {
+        width: 100%;
+        height: 45px;
+        border-radius: 7px;
+        color: white;
+        background-color: #4288FF;
     }
 }
