@@ -3,7 +3,7 @@ import style from './ProductList.module.scss'
 import ProductItem from '../../components/ProductItem/ProductItem'
 import Header from '../../components/Header/Header'
 import { useTelegram } from '../../hooks/useTelegram'
-import { products } from '../../utils/products'
+// import { products } from '../../utils/products'
 import { Spin } from 'antd';
 import { useNavigate } from 'react-router-dom'
 
@@ -11,32 +11,32 @@ const ProductList = ({ addedItems, setAddedItems }) => {
     const { tg, queryId } = useTelegram()
     const navigate = useNavigate()
 
-    // const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([])
 
-    // useEffect(() => {
-    //     const getProducts = () => {
-    //         try {
-    //             fetch('http://89.208.103.148:8000/internal/get-products', {
-    //                 method: 'GET',
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                 }
-    //             })
-    //                 .then(res => {
-    //                     if (!res.ok) {
-    //                         throw new Error('Network response was not ok');
-    //                     }
-    //                     return res.json();
-    //                 })
-    //                 .then(data => {
-    //                     setProducts(data);
-    //                 })
-    //         } catch (error) {
-    //             console.error('Error fetching data:', error);
-    //         }
-    //     };
-    //     getProducts();
-    // }, []);
+    useEffect(() => {
+        const getProducts = () => {
+            try {
+                fetch('http://somethingiscallingme.ru:8000/internal/get-products', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return res.json();
+                    })
+                    .then(data => {
+                        setProducts(data);
+                    })
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        getProducts();
+    }, []);
 
     // const onSendData = async () => {
     //     const data = {

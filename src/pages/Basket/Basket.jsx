@@ -90,8 +90,8 @@ const Basket = ({ addedItems, setAddedItems }) => {
             ))}
             <div className={style.footerContainer}>
                 <div className={style.flexDiv}>
-                    <h3 className={style.summa}>Сумма</h3>
-                    <h3 className={style.totalPrice}>{totalPrice} €</h3>
+                    <div className={style.summa}>Сумма</div>
+                    <div className={style.totalPrice}>{totalPrice} €</div>
                 </div>
                 <button className={style.btn}>Оформить заказ</button>
             </div>

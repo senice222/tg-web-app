@@ -136,7 +136,8 @@ body {
         flex-direction: column;
 
         .footerContainer {
-            .flexDiv{
+            display: flex;
+            .flexDiv {
                 display: flex;
                 justify-content: space-between;
 
