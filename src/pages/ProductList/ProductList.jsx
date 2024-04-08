@@ -14,7 +14,7 @@ const ProductList = ({ addedItems, setAddedItems }) => {
     useEffect(() => {
         const getProducts = () => {
             try {
-                fetch('http://freetigersclan.su/internal/data', {
+                fetch('https://freetigersclan.su/internal/data', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ const ProductList = ({ addedItems, setAddedItems }) => {
     //         totalPrice: getTotalPrice(addedItems),
     //         queryId
     //     }
-    //     await fetch('http://freetigersclan.su:8000/internal/web-data', {
+    //     await fetch('https://freetigersclan.su:8000/internal/web-data', {
     //         method: 'POST',
     //         headers: {
     //             'Content-Type': 'application/json',
