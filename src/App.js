@@ -9,7 +9,7 @@ import ChoosePaymentType from './pages/ChoosePaymentType/ChoosePaymentType';
 const App = () => {
     const {tg} = useTelegram()
     const [addedItems, setAddedItems] = useState([])
-
+    
     useEffect(() => {
         tg.ready()
     }, [])
