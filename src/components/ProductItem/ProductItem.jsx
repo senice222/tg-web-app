@@ -11,15 +11,15 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, delet
 
     return (
         <div className={`${style.product} ${className}`}>
-            <div className={style.img} />
+            <img className={style.img} src={product.photo} alt='/' />
             <div className={style.title}>{product.title}</div>
             <div className={style.price}>
                 <b>{product.totalPrice} €</b>
             </div>
             <div className={style.description}>
                 {
-                    product && product.description ?
-                        product.description.map(item =>
+                    product && product.productDetailes ?
+                        product.productDetailes.map(item =>
                             <div key={item.label}>
                                 <span><b><i>{item.label}</i></b> {item.value}</span>
                             </div>
