@@ -18,7 +18,14 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, delet
             </div>
             <div className={style.description}>
                 {
-                    product ? product.description.map(item => <div><span><b><i>{item.label}</i></b> {item.value}</span></div>) : <p>loading</p>
+                    product && product.description ?
+                        product.description.map(item =>
+                            <div key={item.label}>
+                                <span><b><i>{item.label}</i></b> {item.value}</span>
+                            </div>
+                        )
+                        :
+                        <p>loading</p>
                 }
             </div>
 
