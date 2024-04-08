@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './ProductList.module.scss'
 import ProductItem from '../../components/ProductItem/ProductItem'
 import Header from '../../components/Header/Header'
 import { useTelegram } from '../../hooks/useTelegram'
-// import { products } from '../../utils/products'
 import { Spin } from 'antd';
 import { useNavigate } from 'react-router-dom'
 
@@ -97,7 +96,7 @@ const ProductList = ({ addedItems, setAddedItems }) => {
             <Header />
             <h3 className={style.title}>WoToFo 3000</h3>
             <div className={style.list}>
-                {products !== undefined ? (
+                {products ? (
                     products.map(item => (
                         <ProductItem
                             key={item.id}
