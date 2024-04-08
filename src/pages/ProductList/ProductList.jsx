@@ -15,7 +15,7 @@ const ProductList = ({ addedItems, setAddedItems }) => {
     useEffect(() => {
         const getProducts = () => {
             try {
-                fetch('http://freetigersclan.su:8000/internal/dataa', {
+                fetch('http://freetigersclan.su/internal/data', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
