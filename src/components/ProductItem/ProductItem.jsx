@@ -40,9 +40,6 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, delet
                     </button>
                 </div>
             )}
-            <button className={style.buy}>
-                Купить сразу
-            </button>
         </div>
     );
 }

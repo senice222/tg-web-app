@@ -1,9 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './Basket.module.scss'
 import { useNavigate } from 'react-router-dom';
+import { useTelegram } from '../../hooks/useTelegram';
 
 const Basket = ({ addedItems, setAddedItems }) => {
     const navigate = useNavigate()
+    const {user} = useTelegram()
+    const [currentUser, setCurrentUser] = useState()
+    const [error, setError] = useState("")
+
+    console.log(user)
+    // /internal/getUser/:id
+    useEffect(() => {
+        try {
+            fetch(`https://vape-shop8.shop/internal/getUser/${user.id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    setCurrentUser(data);
+                })
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }, [])    
 
     const addMore = (product) => {
         const item = addedItems.find(item => item._id === product._id);
@@ -28,6 +56,15 @@ const Basket = ({ addedItems, setAddedItems }) => {
         setAddedItems(updatedItems);
     }
     const totalPrice = Math.round(addedItems.reduce((acc, curr) => acc += curr.totalPrice, 0))
+
+    const createPayment = () => {
+        if (currentUser.balance >= totalPrice) {
+            currentUser.balance -= totalPrice
+            navigate("/succeedPayment")
+        } else {
+            setError("У вас недостаточно средств. Пополните баланс.")
+        }
+    }
 
     return (
         <div className={style.globalContainer}>
@@ -78,7 +115,10 @@ const Basket = ({ addedItems, setAddedItems }) => {
                     <div className={style.summa}>Сумма</div>
                     <div className={style.totalPrice}>{totalPrice} €</div>
                 </div>
-                <button className={style.btn} onClick={() => navigate("/typeOfPayment")}>Оформить заказ</button>
+                <div>
+                    <p style={{color: "red"}}>{error}</p>
+                </div>
+                <button className={style.btn} onClick={createPayment}>Оформить заказ</button>
             </div>
         </div>
     )
