@@ -1,5 +1,6 @@
 import React from 'react'
 import style from './SucceedPayment.module.scss'
+import success from '../../assets/kindpng_4312134.png'
 
 const SucceedPayment = () => {
     return (
