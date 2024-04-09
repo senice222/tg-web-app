@@ -67,7 +67,7 @@ const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
                 }
             </div>
             {addedItems.length > 0 &&
-                <div className={style.btnDiv}><button className={style.button} onClick={() => navigate("/basket")}>{addedItems.length} товаров на {Math.round(prices)} </button></div>
+                <div className={style.btnDiv}><button className={style.button} onClick={() => navigate("/basket")}>{addedItems.length} товаров на {Math.round(prices)} €</button></div>
             }
         </div>
     )

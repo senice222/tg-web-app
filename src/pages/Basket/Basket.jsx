@@ -5,15 +5,15 @@ import { useTelegram } from '../../hooks/useTelegram';
 
 const Basket = ({ addedItems, setAddedItems }) => {
     const navigate = useNavigate()
-    const {user} = useTelegram()
+    const { id } = useTelegram()
     const [currentUser, setCurrentUser] = useState()
     const [error, setError] = useState("")
 
-    console.log(user)
-    // /internal/getUser/:id
+    console.log(id)
+
     useEffect(() => {
         try {
-            fetch(`https://vape-shop8.shop/internal/getUser/${user.id}`, {
+            fetch(`https://vape-shop8.shop/internal/getUser/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
         } catch (error) {
             console.error('Error fetching data:', error);
         }
-    }, [])    
+    }, [])
 
     const addMore = (product) => {
         const item = addedItems.find(item => item._id === product._id);
@@ -50,7 +50,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
             setAddedItems(addedItems.filter(item => item._id !== product._id));
         }
     };
-    
+
     const handleDeleteClick = (product) => {
         const updatedItems = addedItems.filter(item => item._id !== product._id);
         setAddedItems(updatedItems);
@@ -59,8 +59,24 @@ const Basket = ({ addedItems, setAddedItems }) => {
 
     const createPayment = () => {
         if (currentUser.balance >= totalPrice) {
-            currentUser.balance -= totalPrice
-            navigate("/succeedPayment")
+            try {
+                fetch(`https://vape-shop8.shop/internal/changeBalance/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ price: totalPrice })
+                })
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return res.json();
+                    })
+                window.location = "https://vape-shop8.shop/succeedPayment"
+            } catch (e) {
+                console.log(e)
+            }
         } else {
             setError("У вас недостаточно средств. Пополните баланс.")
         }
@@ -116,7 +132,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                     <div className={style.totalPrice}>{totalPrice} €</div>
                 </div>
                 <div>
-                    <p style={{color: "red"}}>{error}</p>
+                    <p style={{ color: "red" }}>{error}</p>
                 </div>
                 <button className={style.btn} onClick={createPayment}>Оформить заказ</button>
             </div>
