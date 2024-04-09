@@ -4,7 +4,7 @@ import style from './ProductItem.module.scss'
 const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, deleteOne, count }) => {
 
     const isChose = isChoseProduct(product)
-    console.log(product.quantity)
+
     return (
         <div className={`${style.product} ${className}`}>
             <img className={style.img} src={product.photo} alt='/' />

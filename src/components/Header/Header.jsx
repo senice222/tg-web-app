@@ -11,7 +11,7 @@ const Header = ({ products, value, setValue, category, setCategory, region, setR
     useEffect(() => {
         const getCategories = () => {
             try {
-                fetch('http://localhost:8000/internal/category', {
+                fetch('https://vape-shop8.shop/internal/category', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const Header = ({ products, value, setValue, category, setCategory, region, setR
     useEffect(() => {
         const getRegions = () => {
             try {
-                fetch('http://localhost:8000/internal/region', {
+                fetch('https://vape-shop8.shop/internal/region', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

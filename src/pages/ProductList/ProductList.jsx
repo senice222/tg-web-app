@@ -3,7 +3,6 @@ import style from './ProductList.module.scss'
 import ProductItem from '../../components/ProductItem/ProductItem'
 import { Spin } from 'antd';
 import { useNavigate } from 'react-router-dom'
-import { products } from '../../utils/products'
 
 const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
     const navigate = useNavigate()

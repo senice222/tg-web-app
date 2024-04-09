@@ -12,7 +12,7 @@ const Home = ({ addedItems, setAddedItems }) => {
     useEffect(() => {
         const getProducts = () => {
             try {
-                fetch('http://localhost:8000/internal/data', {
+                fetch('https://vape-shop8.shop/internal/data', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
