@@ -1,18 +1,14 @@
 import React from 'react'
 import style from './ProductItem.module.scss'
-// onSendData
-const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, deleteOne }) => {
 
-    const send = (product) => {
-        onAdd(product)
-        // onSendData()
-    }
+const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, deleteOne, count }) => {
+
     const isChose = isChoseProduct(product)
-
+    console.log(product.quantity)
     return (
         <div className={`${style.product} ${className}`}>
             <img className={style.img} src={product.photo} alt='/' />
-            <div className={style.title}>{product.title}</div>
+            <div className={style.title}>{product.tastes}</div>
             <div className={style.price}>
                 <b>{product.totalPrice} €</b>
             </div>
@@ -30,7 +26,7 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, delet
             </div>
 
             {!isChose ? (
-                <button className={style.addBasketBtn} onClick={() => send(product)}>
+                <button className={style.addBasketBtn} onClick={() => onAdd(product)}>
                     В корзину
                 </button>
             ) : (
@@ -38,7 +34,7 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, delet
                     <button className={style.minusProduct} onClick={() => deleteOne(product)}>
                         -
                     </button>
-                    <p className={style.quantity}>{product.quantity}</p>
+                    <p className={style.quantity}>{count}</p>
                     <button className={style.plusProduct} onClick={() => addMore(product)}>
                         +
                     </button>

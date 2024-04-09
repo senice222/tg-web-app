@@ -1,57 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import style from './ProductList.module.scss'
 import ProductItem from '../../components/ProductItem/ProductItem'
-import Header from '../../components/Header/Header'
-import { useTelegram } from '../../hooks/useTelegram'
 import { Spin } from 'antd';
 import { useNavigate } from 'react-router-dom'
+import { products } from '../../utils/products'
 
-const ProductList = ({ addedItems, setAddedItems }) => {
-    const { tg, queryId } = useTelegram()
+const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
     const navigate = useNavigate()
-    const [products, setProducts] = useState([])
 
-    useEffect(() => {
-        const getProducts = () => {
-            try {
-                fetch('http://89.208.103.148/internal/data', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                })
-                    .then(res => {
-                        if (!res.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return res.json();
-                    })
-                    .then(data => {
-                        setProducts(data);
-                    })
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-        getProducts();
-    }, []);
-
-    // const onSendData = async () => {
-    //     const data = {
-    //         products: addedItems,
-    //         totalPrice: getTotalPrice(addedItems),
-    //         queryId
-    //     }
-    //     await fetch('https://freetigersclan.su:8000/internal/web-data', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(data)
-    //     })
-    // }
     const prices = addedItems.reduce((acc, item) => acc += item.totalPrice, 0)
-    
+
     const onAdd = (product) => {
         let newItems = [];
 
@@ -59,63 +17,58 @@ const ProductList = ({ addedItems, setAddedItems }) => {
 
         setAddedItems(newItems)
     }
-    const isChoseProduct = (product) => addedItems.includes(product)
-
+    const isChoseProduct = (product) => addedItems.some((item) => item._id === product._id)
+    
     const addMore = (product) => {
-        const item = addedItems.find(item => item.id === product.id);
-        setAddedItems((prev) => {
-            const choseItem = prev.find(product => product.id === item.id)
-            if (addedItems.includes(choseItem)) {
-                choseItem.quantity += 1
-                choseItem.totalPrice += choseItem.price
-                return [choseItem]
-            }
-            choseItem.quantity += 1
-            choseItem.totalPrice += choseItem.price
-            return [...prev, choseItem]
-        })
+        const item = addedItems.find(item => item._id === product._id);
+        let newArr = addedItems.concat()
+        newArr.splice(newArr.indexOf(item), 1, { ...item, quantity: item.quantity + 1, totalPrice: item.totalPrice + item.price })
+        setAddedItems(newArr)
+        console.log(addedItems, 1488)
     };
 
     const deleteOne = (product) => {
         const item = addedItems.find(item => item.id === product.id);
         if (item.quantity > 1) {
-            setAddedItems((prev) => {
-                const choseItem = prev.find(product => product.id === item.id)
-                choseItem.quantity -= 1
-                choseItem.totalPrice -= choseItem.price
-                return [choseItem]
-            })
+            let newArr = addedItems.concat()
+            newArr.splice(newArr.indexOf(item), 1, { ...item, quantity: item.quantity - 1, totalPrice: item.totalPrice - item.price })
+            setAddedItems(newArr)
         } else {
-            setAddedItems(addedItems.filter(item => item.id !== product.id));
+            setAddedItems(addedItems.filter(item => item._id !== product._id));
         }
     };
 
-
     return (
         <div className={style.globalContainer}>
-            <Header />
-            <h3 className={style.title}>WoToFo 3000</h3>
+            <h3 className={style.title}>Товары</h3>
             <div className={style.list}>
-                {products ? (
-                    products.map(item => (
+                {filteredProducts ? (
+                    filteredProducts.map(item => (
                         <ProductItem
-                            key={item.id}
+                            key={item._id}
                             product={item}
                             className={style.item}
+                            count={addedItems.find(item1 => item1._id === item._id)?.quantity}
                             onAdd={onAdd}
                             addedItems={addedItems}
                             isChoseProduct={isChoseProduct}
                             addMore={addMore}
                             deleteOne={deleteOne}
-                            // onSendData={onSendData}
                         />
                     ))
                 ) : (
                     <Spin />
                 )}
+                {
+                    filteredProducts.length < 1 && (
+                        <div className={style.div}>
+                            <p>Товар не найден.</p>
+                        </div>
+                    )
+                }
             </div>
             {addedItems.length > 0 &&
-                <button className={style.button} onClick={() => navigate("/basket")}>{addedItems.length} товаров на {prices} </button>
+                <button className={style.button} onClick={() => navigate("/basket")}>{addedItems.length} товаров на {Math.round(prices)} </button>
             }
         </div>
     )

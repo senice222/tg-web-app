@@ -1,69 +1,141 @@
 import React, { useState, useEffect } from 'react'
 import style from './Header.module.scss'
 import filter from '../../assets/filter.png'
-import { useDebounce } from '../../hooks/useDebounce'
-import { useNavigate } from "react-router-dom";
-import { products } from '../../utils/products';
 
-const Header = () => {
-    const [value, setValue] = useState("")
-    const [productsList, setProductsList] = useState()
-    const navigate = useNavigate()
-    const debouncedValue = useDebounce(value, 300)
-    const [isOpen, setIsOpen] = useState(false);
+const Header = ({ products, value, setValue, category, setCategory, region, setRegion }) => {
+    const [open, setOpen] = useState(false)
+    const [categoryList, setCategoryList] = useState()
+    const [regionList, setRegionList] = useState()
+    if (!products) return <p>Loading..</p>
 
     useEffect(() => {
-        const getProducts = () => {
-            const data = products.filter(item => item.title.toLowerCase().includes(debouncedValue.toLowerCase()))
-            setProductsList(data)
+        const getCategories = () => {
+            try {
+                fetch('http://localhost:8000/internal/category', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return res.json();
+                    })
+                    .then(data => {
+                        setCategoryList(data);
+                    })
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
         }
-        getProducts()
-    }, [debouncedValue])
+        getCategories()
+    }, [])
 
-    const itemClickHandler = (e) => {
-        const clickedProduct = e.target.textContent
-        setValue(clickedProduct)
-        const choseUser = productsList.filter(item => item.title === clickedProduct)
-        const productUrl = `/product/${choseUser[0]._id}`
-        if (clickedProduct) {
-            navigate(productUrl, { replace: true })
+    useEffect(() => {
+        const getRegions = () => {
+            try {
+                fetch('http://localhost:8000/internal/region', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return res.json();
+                    })
+                    .then(data => {
+                        setRegionList(data);
+                    })
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
         }
-        setIsOpen(false)
-    }
+        getRegions()
+    }, [])
+
+    const handleCategoryChange = (category, checked) => {
+        if (checked) {
+            setCategory(prevList => [...prevList, category]);
+        } else {
+            setCategory(prevList => prevList.filter(cat => cat !== category));
+        }
+    };
+
+    const handleRegionChange = (region, checked) => {
+        if (checked) {
+            setRegion(prevList => [...prevList, region]);
+        } else {
+            setRegion(prevList => prevList.filter(cat => cat !== region));
+        }
+    };
 
     return (
         <div className={style.header}>
             <div className={style.filtersDiv}>
-                <div className={style.container}>
+                <div className={style.container} onClick={() => setOpen((prev) => !prev)}>
                     <img src={filter} alt="/" />
                 </div>
             </div>
-
+            {
+                open && (
+                    <div className={style.filterContainer}>
+                        <div className={style.wrapper}>
+                            <div className={style.categoryList}>
+                                <p>Категории</p>
+                                {
+                                    categoryList ? (
+                                        categoryList.map((item, i) => (
+                                            <div key={i}>
+                                                <input
+                                                    type="checkbox"
+                                                    id={`category-${i}`}
+                                                    name={`category-${i}`}
+                                                    value={item.category}
+                                                    className={style.checkbox}
+                                                    onChange={(e) => handleCategoryChange(e.target.value, e.target.checked)}
+                                                />
+                                                <label htmlFor={`category-${i}`}>{item.category}</label>
+                                            </div>
+                                        ))
+                                    ) : <p>loading..</p>
+                                }
+                            </div>
+                            <div className={style.regionList}>
+                                <p>Регионы</p>
+                                {
+                                    regionList ? (
+                                        regionList.map((item, i) => (
+                                            <div key={i}>
+                                                <input
+                                                    type="checkbox"
+                                                    id={`region-${i}`}
+                                                    className={style.checkbox}
+                                                    value={item.region}
+                                                    onChange={(e) => handleRegionChange(e.target.value, e.target.checked)}
+                                                />
+                                                <label htmlFor={`region-${i}`}>{item.region}</label>
+                                            </div>
+                                        ))
+                                    ) : <p>loading..</p>
+                                }
+                            </div>
+                            <button className={style.saveBtn}>Фильтры применяются автоматически.</button>
+                        </div>
+                    </div>
+                )
+            }
             <div className={style.searchDiv}>
                 <input
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     className={style.serchInput}
                     placeholder='Поиск...'
-                    onClick={() => setIsOpen(true)}
-                    onBlur={() => setIsOpen(false)}
                 />
-                <div className={style.container}>
-                    <ul className={style.ulAutoComplete}>
-                        {
-                            (productsList && isOpen) && productsList.map((item, i) => (
-                                <div key={i}>
-                                    <li
-                                        onClick={itemClickHandler}
-                                        className={style.liAutoComplete}
-                                    >
-                                        {item.title}
-                                    </li>
-                                </div>
-                            ))
-                        }
-                    </ul>
-                </div>
             </div>
         </div>
     );

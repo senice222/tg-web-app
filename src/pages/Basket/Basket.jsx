@@ -6,43 +6,28 @@ const Basket = ({ addedItems, setAddedItems }) => {
     const navigate = useNavigate()
 
     const addMore = (product) => {
-        const item = addedItems.find(item => item.id === product.id);
-        setAddedItems((prev) => {
-            const choseItem = prev.find(product => product.id === item.id)
-            if (addedItems.includes(choseItem)) {
-                choseItem.quantity += 1
-                choseItem.totalPrice += choseItem.price
-                return [choseItem]
-            }
-            choseItem.quantity += 1
-            choseItem.totalPrice += choseItem.price
-            return [...prev, choseItem]
-        })
+        const item = addedItems.find(item => item._id === product._id);
+        let newArr = addedItems.concat()
+        newArr.splice(newArr.indexOf(item), 1, { ...item, quantity: item.quantity + 1, totalPrice: item.totalPrice + item.price })
+        setAddedItems(newArr)
     };
 
     const deleteOne = (product) => {
-        const item = addedItems.find(item => item.id === product.id);
+        const item = addedItems.find(item => item._id === product._id);
         if (item.quantity > 1) {
-            setAddedItems((prev) => {
-                const choseItem = prev.find(product => product.id === item.id)
-                if (addedItems.includes(choseItem)) {
-                    choseItem.quantity -= 1
-                    choseItem.totalPrice -= choseItem.price
-                    return [choseItem]
-                }
-                choseItem.quantity -= 1
-                choseItem.totalPrice -= choseItem.price
-                return [...prev, choseItem]
-            })
+            let newArr = addedItems.concat()
+            newArr.splice(newArr.indexOf(item), 1, { ...item, quantity: item.quantity - 1, totalPrice: item.totalPrice - item.price })
+            setAddedItems(newArr)
         } else {
-            setAddedItems(addedItems.filter(item => item.id !== product.id));
+            setAddedItems(addedItems.filter(item => item._id !== product._id));
         }
     };
-
+    
     const handleDeleteClick = (product) => {
-        return product
+        const updatedItems = addedItems.filter(item => item._id !== product._id);
+        setAddedItems(updatedItems);
     }
-    const totalPrice = addedItems.reduce((acc, curr) => acc += curr.totalPrice, 0)
+    const totalPrice = Math.round(addedItems.reduce((acc, curr) => acc += curr.totalPrice, 0))
 
     return (
         <div className={style.globalContainer}>
@@ -51,11 +36,11 @@ const Basket = ({ addedItems, setAddedItems }) => {
                     <p onClick={() => navigate("/")}>Назад</p>
                 </div>
                 <div className={style.basketBtn}>
-                    <button className={style.button}>{addedItems.length} товаров на {totalPrice}</button>
+                    <button className={style.button}>{addedItems.length} товаров на {totalPrice} €</button>
                 </div>
             </div>
             {addedItems.map(item => (
-                <div key={item.id} className={style.basketProductsContainer}>
+                <div key={item._id} className={style.basketProductsContainer}>
                     <div className={style.productItem}>
                         <div className={style.imgDiv}>
                             <img src="https://m-store.by/wp-content/uploads/2022/12/cranberrygrape-600x600-1.jpg" alt="/" />
@@ -76,11 +61,11 @@ const Basket = ({ addedItems, setAddedItems }) => {
                                 </div>
                                 <div className={style.priceDiv}>
                                     <div className={style.price}>
-                                        <h3>{item.totalPrice} €</h3>
-                                        <div><p>{item.price} €</p></div>
+                                        <h3>{Math.round(item.totalPrice)} €</h3>
+                                        <div><p>{Math.round(item.price)} €</p></div>
                                     </div>
                                     <div className={style.delete}>
-                                        <p onClick={() => handleDeleteClick(item)}>delete</p>
+                                        <button onClick={() => handleDeleteClick(item)}>delete</button>
                                     </div>
                                 </div>
                             </div>
