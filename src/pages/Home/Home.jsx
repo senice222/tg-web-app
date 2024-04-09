@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header/Header'
 import ProductList from '../ProductList/ProductList'
-// import { products } from '../../utils/products'
 
 const Home = ({ addedItems, setAddedItems }) => {
     const [value, setValue] = useState("")
@@ -39,7 +38,6 @@ const Home = ({ addedItems, setAddedItems }) => {
         <>
             <Header value={value} setValue={setValue} products={products} category={category} setCategory={setCategory} region={region} setRegion={setRegion} />
             <ProductList filteredProducts={products} addedItems={addedItems} setAddedItems={setAddedItems} />
-            <button >товаров на </button>
 
         </>
     )

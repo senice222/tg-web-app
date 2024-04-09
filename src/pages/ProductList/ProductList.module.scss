@@ -24,10 +24,13 @@
     background-color: #46A842;
     font-weight: bold;
     color: whitesmoke;
-    width: 70%;
+    width: 90vw;
     height: 40px;
     border-radius: 8px;
     outline: none;
+    position: fixed;
+    bottom: 10px;
+    z-index: 10;
     border: none;
     cursor: pointer;
 }
