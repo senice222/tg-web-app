@@ -65,7 +65,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ price: totalPrice })
+                    body: JSON.stringify({ price: +totalPrice })
                 })
                     .then(res => {
                         if (!res.ok) {
@@ -73,7 +73,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                         }
                         return res.json();
                     })
-                window.location = "https://vape-shop8.shop/succeedPayment"
+                window.location.replace("https://vape-shop8.shop/succeedPayment");
             } catch (e) {
                 console.log(e)
             }
