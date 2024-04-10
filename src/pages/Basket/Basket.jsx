@@ -3,6 +3,7 @@ import style from './Basket.module.scss'
 import { useNavigate } from 'react-router-dom';
 import { useTelegram } from '../../hooks/useTelegram';
 import cross from '../../assets/icons8-крестик-96.png'
+import basket from '../../assets/free-icon-shopping-bag-2956820.png'
 
 const Basket = ({ addedItems, setAddedItems }) => {
     const navigate = useNavigate()
@@ -117,7 +118,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                                         <div><p>{Math.round(item.price)} €</p></div>
                                     </div>
                                     <div className={style.delete} onClick={() => handleDeleteClick(item)}>
-                                        <img src={cross} style={{width: "30px", height: "30px", cursor: "pointer"}} alt='/' />
+                                        <img src={cross} style={{ width: "30px", height: "30px", cursor: "pointer" }} alt='/' />
                                     </div>
                                 </div>
                             </div>
@@ -125,6 +126,18 @@ const Basket = ({ addedItems, setAddedItems }) => {
                     </div>
                 </div>
             ))}
+            {
+                addedItems.length < 1 && (
+                    <div className={style.wrapp}>
+                        <div className={style.productBasketContainer}>
+                            <div className={style.clearBasket}>
+                                <img src={basket} alt='/'/>
+                                <p>Ваша корзина пуста</p>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
             <div className={style.footerContainer}>
                 <div className={style.flexDiv}>
                     <div className={style.summa}>Сумма</div>

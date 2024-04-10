@@ -1,6 +1,4 @@
-.globalContainer {
-
-}
+.globalContainer {}
 
 .list {
     display: flex;
@@ -19,14 +17,25 @@
     margin-bottom: 10px;
     color: #3F3D43
 }
+
 .btnDiv {
     position: fixed;
     bottom: 10px;
     z-index: 10;
     display: flex;
     width: 100vw;
+    align-items: center;
     justify-content: center;
+
+    div {
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 }
+
 .button {
     background-color: #46A842;
     font-weight: bold;
@@ -38,6 +47,7 @@
     border: none;
     cursor: pointer;
 }
+
 .div {
     height: auto;
     width: 200px;

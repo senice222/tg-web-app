@@ -3,6 +3,7 @@ import style from './ProductList.module.scss'
 import ProductItem from '../../components/ProductItem/ProductItem'
 import { Spin } from 'antd';
 import { useNavigate } from 'react-router-dom'
+import basket from '../../assets/shopping-bag.png'
 
 const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
     const navigate = useNavigate()
@@ -17,7 +18,7 @@ const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
         setAddedItems(newItems)
     }
     const isChoseProduct = (product) => addedItems.some((item) => item._id === product._id)
-    
+
     const addMore = (product) => {
         const item = addedItems.find(item => item._id === product._id);
         let newArr = addedItems.concat()
@@ -67,7 +68,14 @@ const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
                 }
             </div>
             {addedItems.length > 0 &&
-                <div className={style.btnDiv}><button className={style.button} onClick={() => navigate("/basket")}>{addedItems.length} товаров на {Math.round(prices)} €</button></div>
+                <div className={style.btnDiv}>
+                    <div>
+                        <button className={style.button} onClick={() => navigate("/basket")}>
+                            <img src={basket} alt='/' />
+                            {addedItems.length} товаров на {Math.round(prices)} €
+                        </button>
+                    </div>
+                </div>
             }
         </div>
     )

@@ -44,6 +44,11 @@ body {
         border-bottom: 1px solid #EDEBED;
         flex-direction: column;
 
+        .clearBasket {
+            display: flex;
+
+        }
+
         .infoContainer {
             display: flex;
             flex-direction: column;
@@ -166,5 +171,33 @@ body {
         outline: none;
         border: none;
         background-color: #4288FF;
+    }
+}
+.wrapp {
+    display: flex;
+    justify-content: center;
+}
+
+.productBasketContainer {
+    background-color: white;
+    width: 0%;
+    margin-left: 10px;
+    border-radius: 5px;
+    display: flex;
+    height: 100px;
+    border-top: 1px solid #EDEBED;
+    margin-top: 10px;
+    border-bottom: 1px solid #EDEBED;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .clearBasket {
+        display: flex;
+        align-items: center;
+        img {
+            width: 30px;
+            height: 30px;
+        }
     }
 }
