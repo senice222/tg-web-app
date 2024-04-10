@@ -13,6 +13,10 @@ body {
         align-items: center;
         justify-content: space-between;
 
+        .backDiv {
+            cursor: pointer;
+        }
+
         .basketBtn {
             button {
                 background-color: #46A842;
