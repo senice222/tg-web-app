@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from './Basket.module.scss'
 import { useNavigate } from 'react-router-dom';
 import { useTelegram } from '../../hooks/useTelegram';
+import cross from '../../assets/icons8-крестик-96.png'
 
 const Basket = ({ addedItems, setAddedItems }) => {
     const navigate = useNavigate()
@@ -94,7 +95,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                 <div key={item._id} className={style.basketProductsContainer}>
                     <div className={style.productItem}>
                         <div className={style.imgDiv}>
-                            <img src={item.url} alt="/" />
+                            <img src={item.photo} alt="/" />
                         </div>
                         <div className={style.infoContainer}>
                             <div className={style.info}>
@@ -115,8 +116,8 @@ const Basket = ({ addedItems, setAddedItems }) => {
                                         <h3>{Math.round(item.totalPrice)} €</h3>
                                         <div><p>{Math.round(item.price)} €</p></div>
                                     </div>
-                                    <div className={style.delete}>
-                                        <button onClick={() => handleDeleteClick(item)}>delete</button>
+                                    <div className={style.delete} onClick={() => handleDeleteClick(item)}>
+                                        <img src={cross} alt='/' />
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +131,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                     <div className={style.totalPrice}>{totalPrice} €</div>
                 </div>
                 <div>
-                    <p style={{ color: "red" }}>{error}</p>
+                    <p style={{ color: "red", fontSize: "13px" }}>{error}</p>
                 </div>
                 <button className={style.btn} onClick={createPayment}>Оформить заказ</button>
             </div>
