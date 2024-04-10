@@ -117,7 +117,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                                         <div><p>{Math.round(item.price)} €</p></div>
                                     </div>
                                     <div className={style.delete} onClick={() => handleDeleteClick(item)}>
-                                        <img src={cross} alt='/' />
+                                        <img src={cross} style={{width: "30px", height: "30px", cursor: "pointer"}} alt='/' />
                                     </div>
                                 </div>
                             </div>
