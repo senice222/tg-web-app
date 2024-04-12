@@ -54,7 +54,6 @@ const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
                             isChoseProduct={isChoseProduct}
                             addMore={addMore}
                             deleteOne={deleteOne}
-                            limit={limit}
                         />
                     ))
                 ) : (
