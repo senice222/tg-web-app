@@ -24,7 +24,6 @@ const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
         let newArr = addedItems.concat()
         newArr.splice(newArr.indexOf(item), 1, { ...item, quantity: item.quantity + 1, totalPrice: item.totalPrice + item.price })
         setAddedItems(newArr)
-        console.log(addedItems, 1488)
     };
 
     const deleteOne = (product) => {
