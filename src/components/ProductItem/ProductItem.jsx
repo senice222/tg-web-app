@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './ProductItem.module.scss'
 
-const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, deleteOne, count }) => {
+const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, deleteOne, count, limit }) => {
 
     const isChose = isChoseProduct(product)
 
@@ -14,7 +14,7 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, delet
             </div>
             <div className={style.description}>
                 {
-                    product && product.productDetailes ?
+                    product ?
                         product.productDetailes.map(item =>
                             <div key={item.label}>
                                 <span><b><i>{item.label}</i></b> {item.value}</span>

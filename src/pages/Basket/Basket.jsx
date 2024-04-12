@@ -81,7 +81,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
             setError("У вас недостаточно средств. Пополните баланс.")
         }
     }
-    console.log(addedItems)
+
     return (
         <div className={style.globalContainer}>
             <div className={style.header}>
