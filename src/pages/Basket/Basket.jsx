@@ -36,10 +36,11 @@ const Basket = ({ addedItems, setAddedItems }) => {
     const addMore = (product) => {
         const item = addedItems.find(item => item._id === product._id);
         let newArr = addedItems.concat()
-        newArr.splice(newArr.indexOf(item), 1, { ...item, quantity: item.quantity + 1, totalPrice: item.totalPrice + item.price })
-        setAddedItems(newArr)
+        if (item.quantity < item.totalQuantity) {
+            newArr.splice(newArr.indexOf(item), 1, { ...item, quantity: item.quantity + 1, totalPrice: item.totalPrice + item.price })
+            setAddedItems(newArr)
+        } 
     };
-
     const deleteOne = (product) => {
         const item = addedItems.find(item => item._id === product._id);
         if (item.quantity > 1) {
