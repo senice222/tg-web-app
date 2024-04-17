@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import style from './Header.module.scss'
 import filter from '../../assets/filter.png'
 
-const Header = ({ products, value, setValue, category, setCategory, region, setRegion }) => {
+const Header = ({ products, value, setValue, setCategory, setRegion }) => {
     const [open, setOpen] = useState(false)
     const [categoryList, setCategoryList] = useState()
     const [regionList, setRegionList] = useState()
@@ -11,7 +11,7 @@ const Header = ({ products, value, setValue, category, setCategory, region, setR
     useEffect(() => {
         const getCategories = () => {
             try {
-                fetch('https://vape-shop8.shop/internal/category', {
+                fetch('https://skateboardjumpers.agency/internal/category', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const Header = ({ products, value, setValue, category, setCategory, region, setR
     useEffect(() => {
         const getRegions = () => {
             try {
-                fetch('https://vape-shop8.shop/internal/region', {
+                fetch('https://skateboardjumpers.agency/internal/region', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

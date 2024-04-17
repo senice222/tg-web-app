@@ -13,7 +13,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
 
     useEffect(() => {
         try {
-            fetch(`https://vape-shop8.shop/internal/getUser/${id}`, {
+            fetch(`https://skateboardjumpers.agency/internal/getUser/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
     const createPayment = () => {
         if (currentUser.balance >= totalPrice) {
             try {
-                fetch(`https://vape-shop8.shop/internal/changeBalance/${id}`, {
+                fetch(`https://skateboardjumpers.agency/internal/changeBalance/${id}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                         }
                         return res.json();
                     })
-                window.location.replace("https://vape-shop8.shop/succeedPayment");
+                window.location.replace("https://skateboardjumpers.agency/succeedPayment");
             } catch (e) {
                 console.log(e)
             }

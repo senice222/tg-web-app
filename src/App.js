@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 import { Route, Routes } from 'react-router-dom';
-import ProductList from './pages/ProductList/ProductList';
 import Basket from './pages/Basket/Basket';
-import ChoosePaymentType from './pages/ChoosePaymentType/ChoosePaymentType';
 import Success from './pages/Success/Success'
 import Cancel from './pages/Cancel/Cancel'
 import Home from './pages/Home/Home';

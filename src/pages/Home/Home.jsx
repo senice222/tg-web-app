@@ -11,7 +11,7 @@ const Home = ({ addedItems, setAddedItems }) => {
     useEffect(() => {
         const getProducts = () => {
             try {
-                fetch('https://vape-shop8.shop/internal/data', {
+                fetch('https://skateboardjumpers.agency/internal/data', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
