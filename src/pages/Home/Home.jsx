@@ -6,7 +6,7 @@ const Home = ({ addedItems, setAddedItems }) => {
     const [value, setValue] = useState("")
     const [region, setRegion] = useState([])
     const [category, setCategory] = useState([])
-    const [products, setProducts] = useState([])
+    const [allProducts, setAllProducts] = useState([])
     
     useEffect(() => {
         const getProducts = () => {
@@ -25,7 +25,7 @@ const Home = ({ addedItems, setAddedItems }) => {
                         return res.json();
                     })
                     .then(data => {
-                        setProducts(data);
+                        setAllProducts(data);
                     })
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -33,7 +33,7 @@ const Home = ({ addedItems, setAddedItems }) => {
         };
         getProducts();
     }, [category, region]);
-
+    const products = allProducts.filter(item => item.coordinates.length > 0)
     return (
         <>
             <Header value={value} setValue={setValue} products={products} category={category} setCategory={setCategory} region={region} setRegion={setRegion} />

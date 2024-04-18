@@ -57,7 +57,6 @@ const Basket = ({ addedItems, setAddedItems }) => {
         setAddedItems(updatedItems);
     }
     const totalPrice = Math.round(addedItems.reduce((acc, curr) => acc += curr.totalPrice, 0))
-
     const createPayment = () => {
         if (currentUser.balance >= totalPrice) {
             try {
