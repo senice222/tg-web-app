@@ -138,7 +138,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
             }
             <div className={style.footerContainer}>
                 <div className={style.flexDiv}>
-                    <div className={style.summa}>{t("Sum")}</div>
+                    <div className={style.summa}>{t("Total")}</div>
                     <div className={style.totalPrice}>{totalPrice} €</div>
                 </div>
                 <div>
