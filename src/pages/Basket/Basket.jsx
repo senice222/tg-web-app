@@ -144,7 +144,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                 <div>
                     <p style={{ color: "red", fontSize: "13px" }}>{error}</p>
                 </div>
-                <button className={style.btn} onClick={createPayment}>{t("order")}</button>
+                <button className={style.btn} onClick={createPayment}>{t("Place Order")}</button>
             </div>
         </div>
     )
