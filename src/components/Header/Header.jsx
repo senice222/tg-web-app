@@ -136,7 +136,7 @@ const Header = ({ products, value, setValue, setCategory, setRegion }) => {
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     className={style.serchInput}
-                    placeholder={t("search") + "..."}
+                    placeholder={t("Search") + "..."}
                 />
             </div>
         </div>
