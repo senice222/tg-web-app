@@ -88,7 +88,7 @@ const Header = ({ products, value, setValue, setCategory, setRegion }) => {
                     <div className={style.filterContainer}>
                         <div className={style.wrapper}>
                             <div className={style.categoryList}>
-                                <p>{t("category")}</p>
+                                <p>{t("Categories")}</p>
                                 {
                                     categoryList ? (
                                         categoryList.map((item, i) => (
@@ -108,7 +108,7 @@ const Header = ({ products, value, setValue, setCategory, setRegion }) => {
                                 }
                             </div>
                             <div className={style.regionList}>
-                                <p>{t("regions")}</p>
+                                <p>{t("Region")}</p>
                                 {
                                     regionList ? (
                                         regionList.map((item, i) => (
