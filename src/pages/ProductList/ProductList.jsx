@@ -4,11 +4,12 @@ import ProductItem from '../../components/ProductItem/ProductItem'
 import { Spin } from 'antd';
 import { useNavigate } from 'react-router-dom'
 import basket from '../../assets/shopping-bag.png'
+import { useTranslation } from 'react-i18next';
 
 const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
     const navigate = useNavigate()
     const prices = addedItems.reduce((acc, item) => acc += item.totalPrice, 0)
-
+    const {t} = useTranslation
     const onAdd = (product) => {
         let newItems = [];
 
@@ -40,7 +41,7 @@ const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
 
     return (
         <div className={style.globalContainer}>
-            <h3 className={style.title}>Товары</h3>
+            <h3 className={style.title}>{t("products")}</h3>
             <div className={style.list}>
                 {filteredProducts ? (
                     filteredProducts.map(item => (
@@ -62,7 +63,7 @@ const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
                 {
                     filteredProducts.length < 1 && (
                         <div className={style.div}>
-                            <p>Товар не найден.</p>
+                            <p>{t("notFound")}</p>
                         </div>
                     )
                 }
@@ -72,7 +73,7 @@ const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
                     <div>
                         <button className={style.button} onClick={() => navigate("/basket")}>
                             <img src={basket} alt='/' />
-                            {addedItems.length} товаров на {Math.round(prices)} €
+                            {addedItems.length} {t("tovarovNa")} {Math.round(prices)} €
                         </button>
                     </div>
                 </div>

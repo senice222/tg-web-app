@@ -1,0 +1,22 @@
+{
+    "tovarovNa": "preces",
+    "back": "Atpakaļ",
+    "basketPusto": "Jūsu grozs ir tukšs",
+    "summa": "Summa",
+    "order": "Veikt pasūtījumu",
+    "somethingWentWrong": "Kaut kas nogāja greizi!",
+    "products": "Preces",
+    "category": "Kategorija",
+    "region": "Reģioni",
+    "automatically.": "Filtri tiek piemēroti automātiski.",
+    "notFound": "Prece nav atrasta.",
+    "search": "Meklēšana",
+    "notSuccess": "Jums neizdevās papildināt savu kontu.",
+    "connection": "Varbūt ir problēma ar savienojumu.",
+    "success": "Jūs veiksmīgi iegādājāties preci!",
+    "openTg": "Atveriet savu profilu Telegram botā.",
+    "successPayment": "Maksājums veikts veiksmīgi!",
+    "balance": "Jūs veiksmīgi papildinājāt savu kontu.",
+    "addToCart": "Pievienot grozam",
+    "comeback": "Jūs varat atgriezties pie bota tagad."
+}

@@ -5,10 +5,12 @@ import { useTelegram } from '../../hooks/useTelegram';
 import cross from '../../assets/icons8-крестик-96.png'
 import basket from '../../assets/free-icon-shopping-bag-2956820.png'
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const Basket = ({ addedItems, setAddedItems }) => {
     const navigate = useNavigate()
     const { id } = useTelegram()
+    const {t} = useTranslation()
     const [currentUser, setCurrentUser] = useState()
     const [error, setError] = useState("")
 
@@ -82,10 +84,10 @@ const Basket = ({ addedItems, setAddedItems }) => {
         <div className={style.globalContainer}>
             <div className={style.header}>
                 <div className={style.backDiv}>
-                    <p onClick={() => navigate("/")}>Назад</p>
+                    <p onClick={() => navigate("/")}>{t("back")}</p>
                 </div>
                 <div className={style.basketBtn}>
-                    <button className={style.button}>{addedItems.length} товаров на {totalPrice} €</button>
+                    <button className={style.button}>{addedItems.length} {t("tovarovNa")} {totalPrice} €</button>
                 </div>
             </div>
             {addedItems.map(item => (
@@ -128,7 +130,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                         <div className={style.productBasketContainer}>
                             <div className={style.clearBasket}>
                                 <img src={basket} alt='/'/>
-                                <p>Ваша корзина пуста</p>
+                                <p>{t("basketPusto")}</p>
                             </div>
                         </div>
                     </div>
@@ -136,13 +138,13 @@ const Basket = ({ addedItems, setAddedItems }) => {
             }
             <div className={style.footerContainer}>
                 <div className={style.flexDiv}>
-                    <div className={style.summa}>Сумма</div>
+                    <div className={style.summa}>{t("summa")}</div>
                     <div className={style.totalPrice}>{totalPrice} €</div>
                 </div>
                 <div>
                     <p style={{ color: "red", fontSize: "13px" }}>{error}</p>
                 </div>
-                <button className={style.btn} onClick={createPayment}>Оформить заказ</button>
+                <button className={style.btn} onClick={createPayment}>{t("order")}</button>
             </div>
         </div>
     )

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import style from './Header.module.scss'
 import filter from '../../assets/filter.png'
+import { useTranslation } from 'react-i18next'
 
 const Header = ({ products, value, setValue, setCategory, setRegion }) => {
     const [open, setOpen] = useState(false)
     const [categoryList, setCategoryList] = useState()
     const [regionList, setRegionList] = useState()
+    const {t} = useTranslation()
     if (!products) return <p>Loading..</p>
 
     useEffect(() => {
@@ -86,7 +88,7 @@ const Header = ({ products, value, setValue, setCategory, setRegion }) => {
                     <div className={style.filterContainer}>
                         <div className={style.wrapper}>
                             <div className={style.categoryList}>
-                                <p>Категории</p>
+                                <p>{t("category")}</p>
                                 {
                                     categoryList ? (
                                         categoryList.map((item, i) => (
@@ -106,7 +108,7 @@ const Header = ({ products, value, setValue, setCategory, setRegion }) => {
                                 }
                             </div>
                             <div className={style.regionList}>
-                                <p>Регионы</p>
+                                <p>{t("regions")}</p>
                                 {
                                     regionList ? (
                                         regionList.map((item, i) => (
@@ -124,7 +126,7 @@ const Header = ({ products, value, setValue, setCategory, setRegion }) => {
                                     ) : <p>loading..</p>
                                 }
                             </div>
-                            <button className={style.saveBtn}>Фильтры применяются автоматически.</button>
+                            <button className={style.saveBtn}>{t("automatically")}</button>
                         </div>
                     </div>
                 )
@@ -134,7 +136,7 @@ const Header = ({ products, value, setValue, setCategory, setRegion }) => {
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     className={style.serchInput}
-                    placeholder='Поиск...'
+                    placeholder={t("search") + "..."}
                 />
             </div>
         </div>
