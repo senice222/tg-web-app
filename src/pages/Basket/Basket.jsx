@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTelegram } from '../../hooks/useTelegram';
 import cross from '../../assets/icons8-крестик-96.png'
 import basket from '../../assets/free-icon-shopping-bag-2956820.png'
+import axios from 'axios';
 
 const Basket = ({ addedItems, setAddedItems }) => {
     const navigate = useNavigate()
