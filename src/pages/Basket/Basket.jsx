@@ -57,25 +57,20 @@ const Basket = ({ addedItems, setAddedItems }) => {
         setAddedItems(updatedItems);
     }
     const totalPrice = Math.round(addedItems.reduce((acc, curr) => acc += curr.totalPrice, 0))
-    const createPayment = () => {
+    const createPayment = async () => {
         if (currentUser.balance >= totalPrice) {
             try {
-                fetch(`https://skateboardjumpers.agency/internal/changeBalance/${id}`, {
-                    method: 'POST',
+                await axios.post(`https://skateboardjumpers.agency/internal/changeBalance/${id}`, {
+                    price: +totalPrice,
+                    items: addedItems
+                }, {
                     headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ price: +totalPrice, items: addedItems })
-                })
-                    .then(res => {
-                        if (!res.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return res.json();
-                    })
+                        'Content-Type': 'application/json'
+                    }
+                });
                 window.location.replace("https://skateboardjumpers.agency/succeedPayment");
-            } catch (e) {
-                console.log(e)
+            } catch (error) {
+                console.error(error);
             }
         } else {
             setError("У вас недостаточно средств. Пополните баланс.")
