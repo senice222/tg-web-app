@@ -126,7 +126,7 @@ const Header = ({ products, value, setValue, setCategory, setRegion }) => {
                                     ) : <p>loading..</p>
                                 }
                             </div>
-                            <button className={style.saveBtn}>{t("automatically")}</button>
+                            <button className={style.saveBtn}>{t("Filters are applied automatically.")}</button>
                         </div>
                     </div>
                 )
