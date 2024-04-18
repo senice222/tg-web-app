@@ -13,7 +13,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
 
     useEffect(() => {
         try {
-            fetch(`https://skateboardjumpers.agency/internal/getUser/${id}`, {
+            fetch(`https://skateboardjumpers.agency/internal/getUser/6942036575`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
     const createPayment = () => {
         if (currentUser.balance >= totalPrice) {
             try {
-                fetch(`https://skateboardjumpers.agency/internal/changeBalance/${id}`, {
+                fetch(`https://skateboardjumpers.agency/internal/changeBalance/6942036575`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
