@@ -10,10 +10,10 @@ const SucceedPayment = () => {
         <div className={style.container}>
             <div className={style.block}>
                 <div>
-                    <h1>{t("success")}</h1>
+                    <h1>{t("You have successfully topped up your balance.")}</h1>
                     <img src={success} alt='/' className={style.img} />
                 </div>
-                <p>{t("openTg")}</p>
+                <p>{t("You can return to the bot now.")}</p>
             </div>
         </div>
     )

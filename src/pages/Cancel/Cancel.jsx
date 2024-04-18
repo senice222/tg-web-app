@@ -10,11 +10,11 @@ const Cancel = () => {
         <div className={style.container}>
             <div className={style.block}>
                 <div>
-                    <h1>{t("somethingWentWrong")}</h1>
+                    <h1>{t("Something went wrong!")}</h1>
                     <img src={cancel} alt='/' className={style.img} />
                 </div>
-                <p>{t("notSuccess")}</p>
-                <p>{t("connection")}</p>
+                <p>{t("You were not able to top up your balance.")}</p>
+                <p>{t("There might be an issue with the connection.")}</p>
             </div>
         </div>
     )

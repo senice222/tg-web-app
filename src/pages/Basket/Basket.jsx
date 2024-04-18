@@ -84,10 +84,10 @@ const Basket = ({ addedItems, setAddedItems }) => {
         <div className={style.globalContainer}>
             <div className={style.header}>
                 <div className={style.backDiv}>
-                    <p onClick={() => navigate("/")}>{t("back")}</p>
+                    <p onClick={() => navigate("/")}>{t("Back")}</p>
                 </div>
                 <div className={style.basketBtn}>
-                    <button className={style.button}>{addedItems.length} {t("tovarovNa")} {totalPrice} €</button>
+                    <button className={style.button}>{addedItems.length} {t("items for")} {totalPrice} €</button>
                 </div>
             </div>
             {addedItems.map(item => (
@@ -130,7 +130,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                         <div className={style.productBasketContainer}>
                             <div className={style.clearBasket}>
                                 <img src={basket} alt='/'/>
-                                <p>{t("basketPusto")}</p>
+                                <p>{t("Your basket is empty")}</p>
                             </div>
                         </div>
                     </div>
@@ -138,7 +138,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
             }
             <div className={style.footerContainer}>
                 <div className={style.flexDiv}>
-                    <div className={style.summa}>{t("summa")}</div>
+                    <div className={style.summa}>{t("Sum")}</div>
                     <div className={style.totalPrice}>{totalPrice} €</div>
                 </div>
                 <div>

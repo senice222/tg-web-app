@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
     const navigate = useNavigate()
     const prices = addedItems.reduce((acc, item) => acc += item.totalPrice, 0)
-    const {t} = useTranslation
+    const {t} = useTranslation()
     const onAdd = (product) => {
         let newItems = [];
 
@@ -41,7 +41,7 @@ const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
 
     return (
         <div className={style.globalContainer}>
-            <h3 className={style.title}>{t("products")}</h3>
+            <h3 className={style.title}>{t("Products")}</h3>
             <div className={style.list}>
                 {filteredProducts ? (
                     filteredProducts.map(item => (
@@ -63,7 +63,7 @@ const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
                 {
                     filteredProducts.length < 1 && (
                         <div className={style.div}>
-                            <p>{t("notFound")}</p>
+                            <p>{t("Product not found.")}</p>
                         </div>
                     )
                 }
@@ -73,7 +73,7 @@ const ProductList = ({ filteredProducts, addedItems, setAddedItems }) => {
                     <div>
                         <button className={style.button} onClick={() => navigate("/basket")}>
                             <img src={basket} alt='/' />
-                            {addedItems.length} {t("tovarovNa")} {Math.round(prices)} €
+                            {addedItems.length} {t("items for")} {Math.round(prices)} €
                         </button>
                     </div>
                 </div>

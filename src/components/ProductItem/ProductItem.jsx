@@ -3,7 +3,7 @@ import style from './ProductItem.module.scss'
 import { useTranslation } from 'react-i18next'
 
 const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, deleteOne, count, limit }) => {
-    const {t} = useTranslation
+    const {t} = useTranslation()
     const isChose = isChoseProduct(product)
 
     return (
@@ -28,7 +28,7 @@ const ProductItem = ({ product, className, onAdd, isChoseProduct, addMore, delet
 
             {!isChose ? (
                 <button className={style.addBasketBtn} onClick={() => onAdd(product)}>
-                    {t("addToCart")}
+                    {t("Add to cart")}
                 </button>
             ) : (
                 <div className={style.wrapper}>
