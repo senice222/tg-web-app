@@ -76,7 +76,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                 console.error(error);
             }
         } else {
-            setError("У вас недостаточно средств. Пополните баланс.")
+            setError(t("Insufficient funds. Please top up your balance."))
         }
     }
 
