@@ -16,7 +16,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
 
     useEffect(() => {
         try {
-            fetch(`http://localhost:8000/internal/getUser/${id}`, {
+            fetch(`https://skateboardjumpers.agency/internal/getUser/6942036575`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
     const createPayment = async () => {
         if (currentUser.balance >= totalPrice) {
             try {
-                await axios.post(`https://skateboardjumpers.agency/internal/changeBalance/${id}`, {
+                await axios.post(`https://skateboardjumpers.agency/internal/changeBalance/6942036575`, {
                     price: +totalPrice,
                     items: addedItems
                 }, {
