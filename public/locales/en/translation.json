@@ -18,5 +18,6 @@
     "Payment was successful!": "Payment was successful!",
     "You have successfully topped up your balance.": "You have successfully topped up your balance.",
     "You can return to the bot now.": "You can return to the bot now.",
-    "Add to cart": "Add to cart"
+    "Add to cart": "Add to cart",
+    "Insufficient funds. Please top up your balance.": "Insufficient funds. Please top up your balance."
 }

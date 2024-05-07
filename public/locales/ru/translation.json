@@ -18,5 +18,6 @@
     "Payment was successful!": "Оплата прошла успешно!",
     "You have successfully topped up your balance.": "Вы успешно пополнили ваш баланс.",
     "You can return to the bot now.": "Можете возвращаться в бота.",
-    "Add to cart": "В корзину"
+    "Add to cart": "В корзину",
+    "Insufficient funds. Please top up your balance.": "У вас недостаточно средств. Пополните баланс."
 }

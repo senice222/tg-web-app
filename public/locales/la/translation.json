@@ -18,5 +18,6 @@
     "Payment was successful!": "Maksājums veiksmīgs!",
     "You have successfully topped up your balance.": "Jūs veiksmīgi papildinājāt savu bilanci.",
     "You can return to the bot now.": "Tagad jūs varat atgriezties pie bota.",
-    "Add to cart": "Pievienot grozam"
+    "Add to cart": "Pievienot grozam",
+    "Insufficient funds. Please top up your balance.": "Nepietiek līdzekļu. Lūdzu, papildiniet savu kontu."
 }

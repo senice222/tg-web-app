@@ -16,7 +16,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
 
     useEffect(() => {
         try {
-            fetch(`https://skateboardjumpers.agency/internal/getUser/${id}`, {
+            fetch(`http://localhost:8000/internal/getUser/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

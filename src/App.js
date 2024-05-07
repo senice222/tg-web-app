@@ -17,7 +17,7 @@ const App = () => {
     useEffect(() => {
         tg.ready()
         const getUserLang = async () => {
-            const {data} = await axios.get(`https://skateboardjumpers.agency/internal/getUser/6527850384`)
+            const {data} = await axios.get(`http://localhost:8000/internal/getUser/6527850384`)
             setCookie(null, 'lang', data.language, {
                 path: '/'
             })
