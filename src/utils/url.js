@@ -1,1 +1,1 @@
-export const url = 'https://skateboardjumpers.agency'
+export const url = 'http://89.208.103.148'
