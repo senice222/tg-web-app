@@ -6,6 +6,7 @@ import cross from '../../assets/icons8-крестик-96.png'
 import basket from '../../assets/free-icon-shopping-bag-2956820.png'
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import { url } from '../../utils/url';
 
 const Basket = ({ addedItems, setAddedItems }) => {
     const navigate = useNavigate()
@@ -16,7 +17,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
 
     useEffect(() => {
         try {
-            fetch(`https://skateboardjumpers.agency/internal/getUser/${id}`, {
+            fetch(`${url}/internal/getUser/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -63,7 +64,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
     const createPayment = async () => {
         if (currentUser.balance >= totalPrice) {
             try {
-                await axios.post(`https://skateboardjumpers.agency/internal/changeBalance/${id}`, {
+                await axios.post(`${url}/internal/changeBalance/${id}`, {
                     price: +totalPrice,
                     items: addedItems
                 }, {
@@ -71,7 +72,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                         'Content-Type': 'application/json'
                     }
                 });
-                window.location.replace("https://skateboardjumpers.agency/succeedPayment");
+                window.location.replace(`${url}/succeedPayment`);
             } catch (error) {
                 console.error(error);
             }

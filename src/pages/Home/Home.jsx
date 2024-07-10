@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header/Header'
 import ProductList from '../ProductList/ProductList'
+import { url } from '../../utils/url'
 
 const Home = ({ addedItems, setAddedItems }) => {
     const [value, setValue] = useState("")
@@ -11,7 +12,7 @@ const Home = ({ addedItems, setAddedItems }) => {
     useEffect(() => {
         const getProducts = () => {
             try {
-                fetch('https://skateboardjumpers.agency/internal/data', {
+                fetch(`${url}/internal/data`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

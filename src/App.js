@@ -9,6 +9,7 @@ import Home from './pages/Home/Home';
 import SucceedPayment from './pages/SucceedPayment/SucceedPayment';
 import axios from 'axios';
 import { setCookie } from 'nookies';
+import { url } from './utils/url';
 
 const App = () => {
     const {tg, id} = useTelegram()
@@ -17,7 +18,7 @@ const App = () => {
     useEffect(() => {
         tg.ready()
         const getUserLang = async () => {
-            const {data} = await axios.get(`http://localhost:8000/internal/getUser/6527850384`)
+            const {data} = await axios.get(`${url}/internal/getUser/${id}`)
             setCookie(null, 'lang', data.language, {
                 path: '/'
             })

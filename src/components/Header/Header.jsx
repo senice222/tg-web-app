@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import style from './Header.module.scss'
 import filter from '../../assets/filter.png'
 import { useTranslation } from 'react-i18next'
+import { url } from '../../utils/url'
 
 const Header = ({ products, value, setValue, setCategory, setRegion }) => {
     const [open, setOpen] = useState(false)
@@ -13,7 +14,7 @@ const Header = ({ products, value, setValue, setCategory, setRegion }) => {
     useEffect(() => {
         const getCategories = () => {
             try {
-                fetch('https://skateboardjumpers.agency/internal/category', {
+                fetch(`${url}/internal/category`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -38,7 +39,7 @@ const Header = ({ products, value, setValue, setCategory, setRegion }) => {
     useEffect(() => {
         const getRegions = () => {
             try {
-                fetch('https://skateboardjumpers.agency/internal/region', {
+                fetch(`${url}/internal/region`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
