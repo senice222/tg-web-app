@@ -1,1 +1,1 @@
-export const url = 'http://89.208.103.148'
+export const url = 'https://splintertailsec.agency'

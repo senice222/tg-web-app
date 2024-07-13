@@ -7,14 +7,16 @@ import basket from '../../assets/free-icon-shopping-bag-2956820.png'
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { url } from '../../utils/url';
+import { ClipLoader } from 'react-spinner';
 
 const Basket = ({ addedItems, setAddedItems }) => {
     const navigate = useNavigate()
     const { id } = useTelegram()
-    const {t} = useTranslation()
+    const { t } = useTranslation()
     const [currentUser, setCurrentUser] = useState()
     const [error, setError] = useState("")
-
+    const [loading, setLoading] = useState(false)
+    
     useEffect(() => {
         try {
             fetch(`${url}/internal/getUser/${id}`, {
@@ -43,7 +45,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
         if (item.quantity < item.totalQuantity) {
             newArr.splice(newArr.indexOf(item), 1, { ...item, quantity: item.quantity + 1, totalPrice: item.totalPrice + item.price })
             setAddedItems(newArr)
-        } 
+        }
     };
     const deleteOne = (product) => {
         const item = addedItems.find(item => item._id === product._id);
@@ -61,9 +63,11 @@ const Basket = ({ addedItems, setAddedItems }) => {
         setAddedItems(updatedItems);
     }
     const totalPrice = Math.round(addedItems.reduce((acc, curr) => acc += curr.totalPrice, 0))
+
     const createPayment = async () => {
         if (currentUser.balance >= totalPrice) {
             try {
+                setLoading(true)
                 await axios.post(`${url}/internal/changeBalance/${id}`, {
                     price: +totalPrice,
                     items: addedItems
@@ -72,6 +76,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                         'Content-Type': 'application/json'
                     }
                 });
+                setLoading(false)
                 window.location.replace(`${url}/succeedPayment`);
             } catch (error) {
                 console.error(error);
@@ -79,6 +84,14 @@ const Basket = ({ addedItems, setAddedItems }) => {
         } else {
             setError(t("Insufficient funds. Please top up your balance."))
         }
+    }
+
+    if (loading) {
+        return (
+            <div className={style.center}>
+                <ClipLoader size={50} color={"#123abc"} loading={true} />
+            </div>
+        )
     }
 
     return (
@@ -130,7 +143,7 @@ const Basket = ({ addedItems, setAddedItems }) => {
                     <div className={style.wrapp}>
                         <div className={style.productBasketContainer}>
                             <div className={style.clearBasket}>
-                                <img src={basket} alt='/'/>
+                                <img src={basket} alt='/' />
                                 <p>{t("Your basket is empty")}</p>
                             </div>
                         </div>
